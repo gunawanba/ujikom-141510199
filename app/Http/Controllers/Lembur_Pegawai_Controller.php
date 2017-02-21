@@ -77,10 +77,11 @@ public function error()
         else{
           $pegawai=Pegawai::where('id',Request('pegawai_id'))->first();
             $kategori_lembur=Kategori_lembur::where('jabatan_id',$pegawai->jabatan_id)->where('golongan_id',$pegawai->golongan_id)->first();
-            if ($kategori_lembur->id==$pegawai->id) {
+            if ($kategori_lembur->id) {
                $lembur_pegawai = new Lembur_pegawai;
             $lembur_pegawai->kode_lembur_id = $kategori_lembur->id;
             $lembur_pegawai->pegawai_id = $request->get('pegawai_id');
+            
             $lembur_pegawai->jumlah_jam = $request->get('jumlah_jam');
              $lembur_pegawai->save();
              return redirect('lembur_pegawai');

@@ -6,7 +6,7 @@
             <div class="row">
                 <!-- Page Header -->
                 <div class="col-lg-12">
-                    <h1 class="page-header">Jabatan</h1>
+                    <h1 class="page-header">pegawai</h1>
                 </div>
                 <!--End Page Header -->
             </div>
@@ -14,10 +14,7 @@
             <div class="row">
                 <!-- Welcome -->
                 <div class="col-lg-12">
-                    <div class="alert alert-info">
-                        <i class="fa fa-folder-open"></i><b>&nbsp;Hello ! </b>Welcome Back <b>Jonny Deen </b>
- <i class="fa  fa-pencil"></i><b>&nbsp;2,000 </b>Support Tickets Pending to Answere. nbsp;
-                    </div>
+                  
                 </div>
                 <!--end  Welcome -->
             </div>
@@ -109,12 +106,16 @@
                                                     <td>{{$pegawais->jabatan->nama_jabatan}}</td>
                                                     <td>{{$pegawais->golongan->nama_golongan}}</td>
                                                     <td><img src="/assets/image/{{$pegawais->photo}}" width="50" height="50"></td>
-                                                    <td>
-              {!! Form::open(['method' => 'DELETE', 'route'=>['pegawai.destroy', $pegawais->id]]) !!}
-             {!! Form::submit('Hapus', ['class' => 'btn btn-danger']) !!}
-             {!! Form::close() !!}
-
+                                                    <td><a href="{{route('pegawai.edit',$pegawais->id)}}" class="btn btn-success">Ubah</a></td>
+                    <td>
+                        <td>
+              <form method="POST" action=" {{route('pegawai.destroy', $pegawais->id)}} ">
+                                {{csrf_field()}}
+        <input type="hidden" name="_method" value="DELETE">
+        <input class="btn btn-xs btn-danger" onclick="return confirm('Apakah yakin ingin menghapus data ?');" type="submit" value="Hapus">
+                            </form>
              </td>
+                      
                      
                                                 </tr>
                                              @endif

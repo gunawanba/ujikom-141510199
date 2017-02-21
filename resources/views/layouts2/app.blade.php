@@ -112,6 +112,19 @@
                     </li>
                     @if(Auth::user()->permession=='Admin')
                         <li>
+                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Golongan<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="{{url('golongan')}}">Tabel Golongan</a>
+                            </li>
+                            <li>
+                                <a href="{{url('golongan/create')}}">Tambah Data</a>
+                            </li>
+                            
+                        </ul>
+                        <!-- second-level-items -->
+                    </li>
+                        <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Pegawai<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
@@ -173,19 +186,7 @@
                         </ul>
                         <!-- second-level-items -->
                     </li>
-                     <li>
-                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Golongan<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="{{url('golongan')}}">Tabel Golongan</a>
-                            </li>
-                            <li>
-                                <a href="{{url('golongan/create')}}">Tambah Data</a>
-                            </li>
-                            
-                        </ul>
-                        <!-- second-level-items -->
-                    </li>
+                     
                      <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> penggajian<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">

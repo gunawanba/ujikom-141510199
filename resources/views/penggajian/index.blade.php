@@ -6,7 +6,7 @@
             <div class="row">
                 <!-- Page Header -->
                 <div class="col-lg-12">
-                    <h1 class="page-header">Jabatan</h1>
+                    <h1 class="page-header">Penggajian</h1>
                 </div>
                 <!--End Page Header -->
             </div>
@@ -14,14 +14,10 @@
             <div class="row">
                 <!-- Welcome -->
                 <div class="col-lg-12">
-                    <div class="alert alert-info">
-                        <i class="fa fa-folder-open"></i><b>&nbsp;Hello ! </b>Welcome Back <b>Jonny Deen </b>
- <i class="fa  fa-pencil"></i><b>&nbsp;2,000 </b>Support Tickets Pending to Answere. nbsp;
-                    </div>
+                  
                 </div>
                 <!--end  Welcome -->
             </div>
-
 
            
 
@@ -87,15 +83,22 @@
                         @else
                             Gaji Sudah Diambil Pada {{$datapenggajian->tanggal_pengambilan}}
                         @endif</b></h5>
-<h5>Gaji Lembur Sebesar Rp.{{$datapenggajian->jumlah_uang_lembur}} ,Gaji Pokok Sebesar Rp.{{$datapenggajian->gaji_pokok}} ,Mendapat Tunjangan Sebesar Rp.{{$datapenggajian->tunjangan_pegawai->tunjangan->besaran_uang}} ,Jadi Total Gaji Rp.{{$datapenggajian->total_gaji}}
+<h5>jam Lembur Sebesar Rp.{{$datapenggajian->jumlah_jam_lembur}},Gaji Lembur Sebesar Rp.{{$datapenggajian->jumlah_uang_lembur}} ,Gaji Pokok Sebesar Rp.{{$datapenggajian->gaji_pokok}} ,Mendapat Tunjangan Sebesar Rp.{{$datapenggajian->tunjangan_pegawai->tunjangan->besaran_uang}} ,Jadi Total Gaji Rp.{{$datapenggajian->total_gaji}}
 
                         </h5>
                         
                                 <a class="btn btn-primary col-md-4" href="{{route('penggajian.show',$datapenggajian->id)}}">Detail</a>
                                 <a class="btn btn-success col-md-4" href="{{route('penggajian.show',$datapenggajian->id)}}">Edit </a>
-                                     {!!Form::open(['method'=>'DELETE','route'=>['penggajian.destroy',$datapenggajian->id]])!!}
-                                    {!!Form::submit('Delete',['class'=>'btn btn-danger col-md-4'])!!}
-                                    {!!Form::close()!!}
+                                                
+              <form method="POST" action=" {{route('penggajian.destroy', $datapenggajian->id)}} ">
+                                {{csrf_field()}}
+        <input type="hidden" name="_method" value="DELETE">
+        <input class="btn btn-xs btn-danger" onclick="return confirm('Apakah yakin ingin menghapus data ?');" type="submit" value="Hapus">
+                            </form>
+             <
+                      
+                     
+                    
                                 
                         </center>
                         </div> 

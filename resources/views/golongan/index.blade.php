@@ -6,7 +6,7 @@
             <div class="row">
                 <!-- Page Header -->
                 <div class="col-lg-12">
-                    <h1 class="page-header">Jabatan</h1>
+                    <h1 class="page-header">Golongan</h1>
                 </div>
                 <!--End Page Header -->
             </div>
@@ -14,10 +14,7 @@
             <div class="row">
                 <!-- Welcome -->
                 <div class="col-lg-12">
-                    <div class="alert alert-info">
-                        <i class="fa fa-folder-open"></i><b>&nbsp;Hello ! </b>Welcome Back <b>Jonny Deen </b>
- <i class="fa  fa-pencil"></i><b>&nbsp;2,000 </b>Support Tickets Pending to Answere. nbsp;
-                    </div>
+                  
                 </div>
                 <!--end  Welcome -->
             </div>
@@ -68,10 +65,10 @@
                                         <table class="table table-bordered table-hover table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th>NIP</th>
-                                                    <th>email pegawai</th>
-                                                    <th>jabatan</th>
-                                                    <th>Golongan</th>
+                                                    <th>kode golongan</th>
+                                                    <th>nama golongan</th>
+                                                    <th>besaran uang</th>
+                                                 
                                                     <th colspan="2" >Opsi</th>
                                                 </tr>
                                             </thead>
@@ -80,12 +77,13 @@
                                                 <tr>
                                                     <td>{{$golongans->kode_golongan}}</td>
                                                     <td>{{$golongans->nama_golongan}}</td>
-                                                    <td>{{$golongans->besaran_uang}}</td>
-                                                                                          <td><a href="{{route('golongan.edit',$golongans->id)}}" class="btn btn-success">Ubah</a></td>
+                                                    <td>{{$golongans->besaran_uang}}</td> <td><a href="{{route('golongan.edit',$golongans->id)}}" class="btn btn-success">Ubah</a></td>
              <td>
-              {!! Form::open(['method' => 'DELETE', 'route'=>['golongan.destroy', $golongans->id]]) !!}
-             {!! Form::submit('Hapus', ['class' => 'btn btn-danger']) !!}
-             {!! Form::close() !!}
+              <form method="POST" action=" {{route('golongan.destroy', $golongans->id)}} ">
+                                {{csrf_field()}}
+        <input type="hidden" name="_method" value="DELETE">
+        <input class="btn btn-xs btn-danger" onclick="return confirm('Apakah yakin ingin menghapus data ?');" type="submit" value="Hapus">
+                            </form>
              </td>
                      
                                                 </tr>

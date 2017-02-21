@@ -37,8 +37,8 @@ class Penggajian_Controller extends Controller
     public function create()
     {
          $tunjangan=Tunjangan_pegawai::paginate(10);
-         
-        return view('penggajian.create',compact('tunjangan','pegawai'));     }
+          $lembur_pegawai=Lembur_pegawai::selectRaw("sum(lembur_pegawais.jumlah_jam) as jumlah_jam,lembur_pegawais.kode_lembur_id as kode_lembur_id,lembur_pegawais.pegawai_id as pegawai_id")->GroupBy('kode_lembur_id','pegawai_id')->get();
+        return view('penggajian.create',compact('tunjangan','lembur_pegawai'));     }
 
     /**
      * Store a newly created resource in storage.
@@ -61,6 +61,8 @@ class Penggajian_Controller extends Controller
         $wherekategorilembur=Kategori_lembur::where('jabatan_id',$wherepegawai->jabatan_id)->where('golongan_id',$wherepegawai->golongan_id)->first();
         //dd($wherekategorilembur);
         $wherelemburpegawai=Lembur_pegawai::where('pegawai_id',$wherepegawai->id)->first();
+          
+       
         // dd($wherelemburpegawai);
         $wherejabatan=Jabatan::where('id',$wherepegawai->jabatan_id)->first();
         // dd($wherejabatan);
@@ -96,9 +98,9 @@ class Penggajian_Controller extends Controller
         $penggajian->save();
         }
         else{
-
+           
             $penggajian->jumlah_jam_lembur=$wherelemburpegawai->jumlah_jam;
-            $penggajian->jumlah_uang_lembur=$wherelemburpegawai->jumlah_jam*$wherekategorilembur->besaran_uang ;
+             $penggajian->jumlah_uang_lembur=$wherelemburpegawai->jumlah_jam*$wherekategorilembur->besaran_uang ;
               $penggajian->status_pengembalian=$request->get('status_pengembalian') ;
             $penggajian->gaji_pokok=$wherejabatan->besaran_uang+$wheregolongan->besaran_uang;
             $penggajian->total_gaji=($wherelemburpegawai->jumlah_jam)*($wherekategorilembur->besaran_uang)+($wheretunjangan->besaran_uang)+($wherejabatan->besaran_uang)+($wheregolongan->besaran_uang);

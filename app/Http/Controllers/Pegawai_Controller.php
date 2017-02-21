@@ -119,7 +119,9 @@ class Pegawai_Controller extends Controller
     {
          
          $pegawai=Pegawai::find($id);
-         return view('pegawai.edit',compact('pegawai','user'));
+         $jabatan=Jabatan::all();
+         $golongan=Golongan::all();
+         return view('pegawai.edit',compact('pegawai','jabatan','golongan'));
     }
 
     /**
@@ -131,30 +133,25 @@ class Pegawai_Controller extends Controller
      */
     public function update(Request $request, $id)
     {
-        $pegawai = Pegawai::find($id);
-
-        if(Input::hasFile('photo')){
-        $file = Input::file('photo');
-       $destination_path = public_path().'/assets/image/';;
-           $filename = $file->getClientOriginalName();
-           $uploadSuccess = $file->move($destination_path, $filename);
-        $pegawai->photo = $filename;
-        }
         
-                $user= User::update([
-            'name' => $request->get('name'),
-            'email' => $request->get('email'),
-            'permession' => $request->get('permession'),
-            'password' => bcrypt($request->get('password')),
-        ]);
-               $pegawai->nip = $request->get('nip');
-            $pegawai->jabatan_id = $request->get('jabatan_id');
-            $pegawai->golongan_id = $request->get('golongan_id');
-            $pegawai->user_id = $user->id;
-            
-            $pegawai->save();
+
+        $update=Input::all();
+        $logo =Input::file('photo') ;
+            $upload='/assets/image/';
+            $filename=$logo->getClientOriginalName();
+            $success=$logo->move($upload,$filename);
+            if($success){
+                $pegawai=new pegawai ;
+                $pegawai=array('photo'=>$filename,
+                                'nip'=>Input::get('nip'),
+                                'jabatan_id'=>Input::get('jabatan_id'),
+                                'golongan_id'=>Input::get('golongan_id'));
+        
+
+                pegawai::where('id',$id)->update($pegawai);
             return redirect('pegawai');
     }
+}
 
     /**
      * Remove the specified resource from storage.
