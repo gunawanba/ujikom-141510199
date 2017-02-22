@@ -11,14 +11,15 @@
 |
 */
 
-Route::get('/register', function () {
-    return view('auth.register');
+Route::get('/ss', function () {
+    return view('layouts2.test');
 });
 
 Auth::routes();
 
 Route::get('/', 'HomeController@index');
 Route::resource('/jabatan','Jabatan_Controller');
+Route::get('gaji/{id}', 'HomeController@gaji');
 Route::resource('/golongan','Golongan_Controller');
 Route::resource('/pegawai','Pegawai_Controller');
 Route::resource('/kategori_lembur','Kategori_Lembur_Controller');

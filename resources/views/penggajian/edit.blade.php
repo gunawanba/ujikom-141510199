@@ -1,108 +1,45 @@
-@extends('layouts2.app')
+@extends('layouts2.app2')
 
 @section('content')
-<div id="page-wrapper">
+       <div id="content">
+                <div class="panel">
+                  <div class="panel-body">
+                      <div class="col-md-6 col-sm-12">
 
-            <div class="row">
-                <!-- Page Header -->
-                <div class="col-lg-12">
-                    <h1 class="page-header">Penggajian</h1>
-                </div>
-                <!--End Page Header -->
-            </div>
+                        <h3 class="animated fadeInLeft">Customer Service</h3>
+                        <p class="animated fadeInDown"><span class="fa  fa-map-marker"></span> Batavia,Indonesia</p>
 
-            <div class="row">
-                <!-- Welcome -->
-                <div class="col-lg-12">
-                  
-                </div>
-                <!--end  Welcome -->
-            </div>
-
-           
-
-         
-
-
-<div class="row">
-                <!--quick info section -->
-             <!--   <a href=""> <div class="col-lg-3">
-                    <div class="alert alert-danger text-center">
-                        <i class="fa  fa-pencil fa-3x"></i>&nbsp;<b>Tambah Data </b>
-                    </div>
-                </div></a> -->
-                
-                
-                <!--end quick info section -->
-            </div>
-
-            <div class="row">
-                <div class="col-lg-8">
-
-
-
-                    <!--Area chart example -->
                        
-
                     </div>
-                    <!--End area chart example -->
-                    <!--Simple table example -->
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i>tabel
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="table-responsive">
-                                      <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-           
+                    <div class="col-md-0 col-sm-12">
+                        
+                       
+                             
+                              
+                                 
+               
                 <div class="panel-body">
-                  {!! Form::model($golongan,['method' => 'PATCH','route'=>['golongan.update',$golongan->id]]) !!}
+                  {!! Form::model($penggajian,['method' => 'PATCH','route'=>['penggajian.update',$penggajian->id]]) !!}
     {!! csrf_field() !!}
 <table  class="table" >
+@php
+$date=date('Y-m-d');
+@endphp
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    <tr>
-        <td>
-            kode golongan
-        </td>
-        <td>
-            <input type="text" name="kode_golongan" value="{{$golongan->kode_golongan}}" class="form-control"></input>
-            {{ $errors->first('kode_golongan', ':message')  }}
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Nama golongan
-        </td>
-        <td>
-            <input type="text" name="nama_golongan" value="{{$golongan->kode_golongan}}" class="form-control"></input>
-             {{ $errors->first('kode_golongan', ':message')  }}
-        </td>
-    </tr>
-    <tr>
-        <td>
-            besaran Uang
-        </td>
-        <td>
-        <input type="text" name="besaran_uang" value="{{$golongan->besaran_uang}}" class="form-control" ></input>
-         {{ $errors->first('besaran_uang', ':message')  }}
-            
-        </td>
-    </tr>
+    <input type="hidden" name="tunjangan_pegawai_id" value="{{$penggajian->tunjangan_pegawai_id}}">
+     <input type="hidden" name="jumlah_jam_lembur" value="{{$penggajian->jumlah_jam_lembur}}">
+      <input type="hidden" name="jumlah_uang_lembur" value="{{$penggajian->jumlah_uang_lembur}}">
+       <input type="hidden" name="gaji_pokok" value="{{$penggajian->gaji_pokok}}">
+        <input type="hidden" name="total_gaji" value="{{$penggajian->total_gaji}}">
+       <input type="hidden" name="tanggal_pengambilan" value="{{$date}}">
+       <input type="hidden" name="status_pengambilan" value="1">
+       <input type="hidden" name="petugas_penerima" value="{{$penggajian->petugas_penerima}}">
+
+   <input type="hidden" name="status_pengembalian" value="1">
     
    
     
-    <tr>
-        <td colspan="2" align="right"><input type="reset" value="Ulang" class="btn btn-danger"> | <input type="submit" value="Tambah" class="btn btn-success"></input></td>
+   <input type="submit" value="Ambil Gaji" class="btn btn-success col-md-12"></input></td>
     </tr>
 </table>
                 </div>
@@ -136,17 +73,11 @@
 
             </div>
 
-                            </div>
-                        </div>
-
+                                       </div>
+                          </div>
+                        </div>                   
                     </div>
-                    <!--End Chat Panel Example-->
+                  </div>                    
                 </div>
-            </div>
-            
-        </div>
-        <!-- end page-wrapper -->
-
-    </div>
 
 @endsection

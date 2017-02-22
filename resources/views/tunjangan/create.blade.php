@@ -1,149 +1,81 @@
-@extends('layouts2.app')
+@extends('layouts2.app2')
 
 @section('content')
-<div id="page-wrapper">
+       <div id="content">
+                <div class="panel">
+                  <div class="panel-body">
+                      <div class="col-md-6 col-sm-12">
 
-            <div class="row">
-                <!-- Page Header -->
-                <div class="col-lg-12">
-                    <h1 class="page-header">Tunjangan</h1>
-                </div>
-                <!--End Page Header -->
-            </div>
+                        <h3 class="animated fadeInLeft">Tambah Data Tunjangan</h3>
+                        <p class="animated fadeInDown"><span class="fa  fa-map-marker"></span> Batavia,Indonesia</p>
 
-            <div class="row">
-                <!-- Welcome -->
-                <div class="col-lg-12">
-                  
-                </div>
-                <!--end  Welcome -->
-            </div>
-
-           
-
-         
-
-
-<div class="row">
-                <!--quick info section -->
-             <!--   <a href=""> <div class="col-lg-3">
-                    <div class="alert alert-danger text-center">
-                        <i class="fa  fa-pencil fa-3x"></i>&nbsp;<b>Tambah Data </b>
-                    </div>
-                </div></a> -->
-                
-                
-                <!--end quick info section -->
-            </div>
-
-            <div class="row">
-                <div class="col-lg-8">
-
-
-
-                    <!--Area chart example -->
                        
-
                     </div>
-                    <!--End area chart example -->
-                    <!--Simple table example -->
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i>tabel
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="table-responsive">
-                                      <div class="container">
+                    <div class="col-md-0 col-sm-12">
+                        
+                   
+                          
+                             
+                              
+                                 
+                           
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
            
                 <div class="panel-body">
                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/tunjangan') }}"   enctype="multipart/form-data">
     {!! csrf_field() !!}
-<table  class="table" >
+
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <?php $random = rand('111111','999999'); ?>  
     
-    <tr>
-        <td>
-Kode tunjangan
-        </td>
-        <td>
-            <input type="text" name="kode_tunjangan" class="form-control"></input>
+            <input type="hidden" name="kode_tunjangan" class="form-control" value="T-{{$random}}"></input>
             {{ $errors->first('kode_tunjangan', ':message')  }}
-        </td>
-    </tr>
-    <tr>
-        <td>
-            nama jabatan
-        </td>
-        <td>
+ 
+      
+             <h3 class="animated fadeInLeft"> nama jabatan</h3>
+   
            <select name="jabatan_id" class="form-control">
             @foreach ($jabatan as $jabatans)
             <option value="{{$jabatans->id}}">{{$jabatans->kode_jabatan}}</option>
             @endforeach
             </select>
 
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Nama Golongan
-        </td>
-        <td>
+
+            <h3 class="animated fadeInLeft">  Nama Golongan </h3>
+  
               <select name="golongan_id" class="form-control">
             @foreach ($golongan as $golongans)
             <option value="{{$golongans->id}}">{{$golongans->nama_golongan}}</option>
             @endforeach
             </select>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            status
-        </td>
-        <td>
+   
+        
+             <h3 class="animated fadeInLeft"> status</h3>
+   
             <select name="status" class="form-control">
             
             <option value="Sudah Menikah">Sudah Menikah</option>
             <option value="Belum Menikah">Belum Menikah</option>
             
             </select>
-        </td>
-    </tr>
+   
     
-    <tr>
-        <td>
-            Jumlah anak
-        </td>
-        <td>
+              <h3 class="animated fadeInLeft">Jumlah anak</h3>
+        
         <input type="text" name="jumlah_anak" class="form-control" ></input>
          {{ $errors->first('besaran_uang', ':message')  }}
             
-        </td>
-    </tr>
-    <tr>
-        <td>
-            besaran uang
-        </td>
-        <td>
+  
+             <h3 class="animated fadeInLeft"> besaran uang</h3>
+       
         <input type="text" name="besaran_uang" class="form-control" ></input>
          {{ $errors->first('besaran_uang', ':message')  }}
             
-        </td>
-    </tr>
-    
-    <tr>
-        <td colspan="2" align="right"><input type="reset" value="Ulang" class="btn btn-danger"> | <input type="submit" value="Tambah" class="btn btn-success"></input></td>
-    </tr>
-</table>
+
+
+        <input type="reset" value="Ulang" class="btn btn-danger"> | <input type="submit" value="Tambah" class="btn btn-success"></input>
+
                 </div>
             </div>
         </div>
@@ -174,17 +106,11 @@ Kode tunjangan
 
             </div>
 
-                            </div>
-                        </div>
-
+                          </div>
+                          </div>
+                        </div>                   
                     </div>
-                    <!--End Chat Panel Example-->
+                  </div>                    
                 </div>
-            </div>
-            
-        </div>
-        <!-- end page-wrapper -->
-
-    </div>
 
 @endsection

@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-
+use App\Models\Penggajian;
 class Pegawai
 {
     /**
@@ -14,13 +14,14 @@ class Pegawai
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {
+    {   
+        $Penggajian=Penggajian::all();
         if (auth()->check() && $request->user()->type_user=='Pegawai') {
-            return $next($request);
+            return redirect()($request);
         }
         else{
       
-        return redirect()->guest('/akses');
+        return redirect()->guest('/penggajian/'{{$Penggajian['id']}});
        }
     }
 }

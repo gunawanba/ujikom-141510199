@@ -15,6 +15,10 @@ class Tunjangan_Controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('Admin');
+    }
     public function index()
     {
          $tunjangan=Tunjangan::all();
@@ -60,7 +64,7 @@ class Tunjangan_Controller extends Controller
        $validation = Validator::make(Input::all(), $rules, $message);
         if ($validation->fails())
         {
-         return Redirect('golongan/create')->withErrors($validation)->withInput();
+         return Redirect('tunjangan/create')->withErrors($validation)->withInput();
         }
 
          $tunjangans=Request::all();

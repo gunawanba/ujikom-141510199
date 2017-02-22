@@ -1,66 +1,34 @@
-@extends('layouts2.app')
+@extends('layouts2.app2')
 
 @section('content')
-<div id="page-wrapper">
+       <div id="content">
+                <div class="panel">
+                  <div class="panel-body">
+                      <div class="col-md-6 col-sm-12">
 
-            <div class="row">
-                <!-- Page Header -->
-                <div class="col-lg-12">
-                    <h1 class="page-header">Lembur Pegawai</h1>
-                </div>
-                <!--End Page Header -->
-            </div>
+                        <h3 class="animated fadeInLeft">Tabel Lembur Pegawai</h3>
+                        <p class="animated fadeInDown"><span class="fa  fa-map-marker"></span> Lembur Pegawai</p>
 
-            <div class="row">
-                <!-- Welcome -->
-                <div class="col-lg-12">
-                  
-                </div>
-                <!--end  Welcome -->
-            </div>
-
-
-
-           
-
-         
-
-
-<div class="row">
-                <!--quick info section -->
-               <a href="{{url('jabatan/create')}}"> <div class="col-lg-3">
-                    <div class="alert alert-danger text-center">
-                        <i class="fa  fa-pencil fa-3x"></i>&nbsp;<b>Tambah Data </b>
-                    </div>
-                </div></a>
-                
-                
-                <!--end quick info section -->
-            </div>
-
-            <div class="row">
-                <div class="col-lg-8">
-
-
-
-                    <!--Area chart example -->
                        
-
                     </div>
-                    <!--End area chart example -->
-                    <!--Simple table example -->
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i>tabel
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col-md-0 col-sm-12">
+                        
+                        <div class="col-md-0 col-sm-0">
+                              <a href="{{url('lembur_pegawai/create')}}"> <button class=" btn btn-circle btn-gradient btn-danger" value="primary">
+                                <span class="fa  fa-pencil fa-1x"></span>
+                              </button></a>
+                             
+                              
+                                 
+             
 
                         <div class="panel-body">
                             <div class="row">
+                              <form action="{{url('lembur_pegawai')}}/?kode_lembur=kode_lembur"> <input type="text" name="kode_lembur"> <button type="submit" class="btn btn-primary">
+                                    cari
+                                </button>
+
+                                </form>
                                 <div class="col-lg-12">
                                     <div class="table-responsive">
                                         <table class="table table-bordered table-hover table-striped">
@@ -120,17 +88,11 @@
 
             </div>
 
-                            </div>
-                        </div>
-
+                                           </div>
+                          </div>
+                        </div>                   
                     </div>
-                    <!--End Chat Panel Example-->
+                  </div>                    
                 </div>
-            </div>
-            
-        </div>
-        <!-- end page-wrapper -->
-
-    </div>
 
 @endsection

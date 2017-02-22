@@ -24,6 +24,10 @@ class Pegawai_Controller extends Controller
     //     $this->middleware('hrd');
     // }
         use RegistersUsers;
+        public function __construct()
+    {
+        $this->middleware('Hrd');
+    }
     public function index()
     {
         $pegawai=Pegawai::all();
@@ -53,25 +57,35 @@ class Pegawai_Controller extends Controller
      */
     public function store(Request $request)
     {
-           $rules = array(
-             'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-            );
+           $rules = array('email' => 'required|unique:users',
+                        'password' => 'required|min:6|confirmed',
+                        'name' => 'required',
+                        'permission' =>'required',
+                        'nip' => 'required|min:11|numeric|unique:pegawais',
+                        'jabatan_id' =>'required',
+                        'golongan_id' => 'required',
+                        'photo' => 'required'
+                        
+                         );
+        $message =array('email.unique' =>'Gunakan Email Lain' ,
+                        'name.required' =>'Wajib Isi',
+                        'email.required' =>'Wajib Isi',
+                        'password.required' =>'wajib isi',
+                        'password.confirmed' =>'Masukan Password Yang Benar',
+                        'permission.required' =>'Wajib isi',
+                        'nip.unique' =>'Gunakan Nip Lain',
+                        'nip.required' =>'Wajib isi',
+                        'nip.min' =>'Min 11',
+                        'nip.numeric' =>'Input Dengan Angka',
+                        'jabatan_id.required' =>'Wajib isi',
+                        'golongan_id.required' =>'Wajib isi',
+                        'photo.required' =>'Wajib isi');
 
-        $message= array(
-        
-            'nama_jabatan.required'=>'Maaf Data Masih Kosong',
-            'kode_jabatan.required'=>'Maaf Data Masih Kosong',
-            'kode_jabatan.unique'=>'data sudah ada',
-            'besaran_uang.required'=>'Maaf Data Masih Kosong'
-            
-            );
-       $validation = Validator::make(Input::all(), $rules, $message);
-        if ($validation->fails())
-        {
-         return Redirect('pegawai/create')->withErrors($validation)->withInput();
-        }
+       // $validation = Validator::make(Input::all(), $rules, $message);
+       //  if ($validation->fails())
+       //  {
+       //   return Redirect('pegawai/create')->withErrors($validation)->withInput();
+       //  }
 
          $file = Input::file('photo');
         $destinationPath = public_path().'/assets/image/';
@@ -161,6 +175,10 @@ class Pegawai_Controller extends Controller
      */
     public function destroy($id)
     {
-        //
+       $pegawai=Pegawai::find($id);
+        
+        $user=User::where('id',$pegawai->user_id)->delete();
+        $pegawai->delete();
+        return redirect('pegawai');
     }
 }

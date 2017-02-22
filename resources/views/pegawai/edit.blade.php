@@ -1,46 +1,22 @@
-@extends('layouts2.app')
+@extends('layouts2.app2')
 
 @section('content')
-<div id="page-wrapper">
+       <div id="content">
+                <div class="panel">
+                  <div class="panel-body">
+                      <div class="col-md-6 col-sm-12">
 
-            <div class="row">
-                <!-- Page Header -->
-                <div class="col-lg-12">
-                    <h1 class="page-header">Pegawai</h1>
-                </div>
-                <!--End Page Header -->
-            </div>
+                        <h3 class="animated fadeInLeft">Ubah Data Pegawai</h3>
+                      <p class="animated fadeInDown"><span class="fa  fa-map-marker"></span> pegawai</p>
 
-            <div class="row">
-                <!-- Welcome -->
-                <div class="col-lg-12">
-                  
-                </div>
-                <!--end  Welcome -->
-            </div>
-
-
-           
-
-         
-
-
-<div class="row">
-                <!--quick info section -->
-             <!--   <a href=""> <div class="col-lg-3">
-                    <div class="alert alert-danger text-center">
-                        <i class="fa  fa-pencil fa-3x"></i>&nbsp;<b>Tambah Data </b>
+                       
                     </div>
-                </div></a> -->
-                
-                
-                <!--end quick info section -->
-            </div>
-
-                                                  <div class="container">
-    <div class="row">
-       
-        
+                    <div class="col-md-0 col-sm-12">
+                        
+                        <div class="col-md-0 col-sm-0">
+                    
+                                 
+                     
 <div class="col-md-6 col-md-offset-0">
             <div class="panel panel-default">
                 <div class="panel-heading">Register User</div>
@@ -72,7 +48,7 @@
             <option value="">pilih</option>
           
            @if (Auth::user()->permession=='Admin')
-           <option value="Keuangan">Hrd</option>
+           <option value="Hrd">Hrd</option>
             <option value="Keuangan">Keuangan</option>
               <option value="Admin">Admin</option>
               @else
@@ -217,17 +193,11 @@
 
             </div>
 
-                            </div>
-                        </div>
-
+                  </div>
+                          </div>
+                        </div>                   
                     </div>
-                    <!--End Chat Panel Example-->
+                  </div>                    
                 </div>
-            </div>
-            
-        </div>
-        <!-- end page-wrapper -->
-
-    </div>
 
 @endsection

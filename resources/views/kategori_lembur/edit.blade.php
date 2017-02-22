@@ -1,69 +1,21 @@
-@extends('layouts2.app')
+@extends('layouts2.app2')
 
 @section('content')
-<div id="page-wrapper">
+       <div id="content">
+                <div class="panel">
+                  <div class="panel-body">
+                      <div class="col-md-6 col-sm-12">
 
-            <div class="row">
-                <!-- Page Header -->
-                <div class="col-lg-12">
-                    <h1 class="page-header">Kategori Lembur</h1>
-                </div>
-                <!--End Page Header -->
-            </div>
+                        <h3 class="animated fadeInLeft">Ubah Data Kategori Lembur</h3>
+                        <p class="animated fadeInDown"><span class="fa  fa-map-marker"></span> Kategori Lembur</p>
 
-            <div class="row">
-                <!-- Welcome -->
-                <div class="col-lg-12">
-                  
-                </div>
-                <!--end  Welcome -->
-            </div>
-
-
-
-           
-
-         
-
-
-<div class="row">
-                <!--quick info section -->
-             <!--   <a href=""> <div class="col-lg-3">
-                    <div class="alert alert-danger text-center">
-                        <i class="fa  fa-pencil fa-3x"></i>&nbsp<b>Tambah Data </b>
-                    </div>
-                </div></a> -->
-                
-                
-                <!--end quick info section -->
-            </div>
-
-            <div class="row">
-                <div class="col-lg-8">
-
-
-
-                    <!--Area chart example -->
                        
-
                     </div>
-                    <!--End area chart example -->
-                    <!--Simple table example -->
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i>tabel
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="table-responsive">
-                                      <div class="container">
+                    <div class="col-md-0 col-sm-12">
+                 
+                              
+                                 
+                     
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
            
@@ -72,21 +24,13 @@
     {!! csrf_field() !!}
 <table  class="table" >
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-      <tr>
-        <td>
-            kode lembur
-        </td>
-        <td>
-            <input type="text" name="kode_lembur" value="{{$kategori_lembur->kode_lembur}}" class="form-control"></input>
+   
+            <input type="hidden" name="kode_lembur" value="{{$kategori_lembur->kode_lembur}}" class="form-control"></input>
             {{ $errors->first('kode_lembur', ':message')  }}
-        </td>
-    </tr>
-
-    <tr>
-        <td>
-            nama jabatan
-        </td>
-        <td>
+   
+ 
+            <h3 class="animated fadeInLeft">nama jabatan</h3>
+   
            <select name="jabatan_id" class="form-control">
            <option value="">Silahkan Pilih</option>
             @foreach ($jabatan as $jabatans)
@@ -94,13 +38,10 @@
             @endforeach
             </select>
              {{ $errors->first('jabatan_id', ':message')  }}
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Nama Golongan
-        </td>
-        <td>
+     
+  
+            <h3 class="animated fadeInLeft">Nama Golongan</h3>
+     
               <select name="golongan_id" class="form-control">
               <option value="">Silahkan Pilih</option>
             @foreach ($golongan as $golongans)
@@ -108,20 +49,16 @@
             @endforeach
             </select>
                 {{ $errors->first('golongan_id', ':message')  }}
-        </td>
-    </tr>
-   <tr>
-        <td>
-            berasan uang
-        </td>
-        <td>
+  
+     
+            <h3 class="animated fadeInLeft">berasan uang</h3>
+     
+      
             <input type="text" name="besaran_uang" value="{{$kategori_lembur->besaran_uang}}" class="form-control"></input>
             {{ $errors->first('besaran_uang', ':message')  }}
-        </td>
-    </tr>
-       <tr>
-        <td colspan="2" align="right"><input type="reset" value="Ulang" class="btn btn-danger"> | <input type="submit" value="Tambah" class="btn btn-success"></input></td>
-    </tr>
+    
+    <input type="submit" value="Tambah" class="btn btn-success"></input>
+   
   {!! Form::close() !!}
                                     </div>
 
@@ -148,17 +85,11 @@
 
             </div>
 
-                            </div>
-                        </div>
-
+                                </div>
+                          </div>
+                        </div>                   
                     </div>
-                    <!--End Chat Panel Example-->
+                  </div>                    
                 </div>
-            </div>
-            
-        </div>
-        <!-- end page-wrapper -->
-
-    </div>
 
 @endsection

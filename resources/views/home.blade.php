@@ -1,23 +1,20 @@
-@extends('layouts2.app')
+@extends('layouts2.app2')
 
 @section('content')
-<div id="page-wrapper">
+       <div id="content">
+                <div class="panel">
+                 
 
-            <div class="row">
-                <!-- Page Header -->
-                <div class="col-lg-12">
-                    <h1 class="page-header"></h1>
-                </div>
-                <!--End Page Header -->
-            </div>
+                       
 
-            <div class="row">
-                <!-- Welcome -->
-                <div class="col-lg-12">
-                <head>
-        <title>Be right back.</title>
-
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+                       
+                    </div>
+                    <div class="col-md-0 col-sm-12">
+                        
+                       
+                             
+                              
+             
 
         <style>
             html, body {
@@ -54,7 +51,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title"><center>WELCOME<br> {{Auth::user()->permession}}</center></div>
+                <div class="title animated fadeInLeft"><center>WELCOME<br> {{Auth::user()->permession}}</center></div>
             </div>
         </div>
     </body>
@@ -74,4 +71,11 @@
 
 
 </div>
+                    
+                            </div>
+                          </div>
+                        </div>                   
+                    </div>
+                  </div>                    
+                </div>
 @endsection

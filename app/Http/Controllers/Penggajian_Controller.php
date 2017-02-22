@@ -20,7 +20,10 @@ class Penggajian_Controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
+public function __construct()
+    {
+        $this->middleware('Keuangan');
+    }
     public function index()
     {
      
@@ -98,19 +101,24 @@ class Penggajian_Controller extends Controller
         $penggajian->save();
         }
         else{
-           
-            $penggajian->jumlah_jam_lembur=$wherelemburpegawai->jumlah_jam;
-             $penggajian->jumlah_uang_lembur=$wherelemburpegawai->jumlah_jam*$wherekategorilembur->besaran_uang ;
+            $nol=0 ;
+            $penggajian->jumlah_jam_lembur=$nol;
+            $penggajian->jumlah_uang_lembur=$nol ;
+          foreach ($wherepegawai->lembur_pegawai as $data) {
+                $penggajian['jumlah_jam_lembur']+=$data->jumlah_jam;
+                $penggajian['jumlah_uang_lembur']+=$wherekategorilembur->besaran_uang*$data->jumlah_jam;
               $penggajian->status_pengembalian=$request->get('status_pengembalian') ;
             $penggajian->gaji_pokok=$wherejabatan->besaran_uang+$wheregolongan->besaran_uang;
-            $penggajian->total_gaji=($wherelemburpegawai->jumlah_jam)*($wherekategorilembur->besaran_uang)+($wheretunjangan->besaran_uang)+($wherejabatan->besaran_uang)+($wheregolongan->besaran_uang);
-            $penggajian->tanggal_pengambilan =date('d-m-y');
+            $penggajian->total_gaji=( $penggajian['jumlah_jam_lembur']*$wherekategorilembur->besaran_uang)+($wheretunjangan->besaran_uang)+($wherejabatan->besaran_uang)+($wheregolongan->besaran_uang);
+             }
+            $penggajian->tanggal_pengambilan =Null;
             $penggajian->tunjangan_pegawai_id=Input::get('tunjangan_pegawai_id');
             $penggajian->petugas_penerima=auth::user()->name ;
             $penggajian->save();
             }
             return redirect('penggajian');
                  }
+            
 
     /**
      * Display the specified resource.
@@ -120,7 +128,8 @@ class Penggajian_Controller extends Controller
      */
     public function show($id)
     {
-        //
+            $datapenggajian=penggajian::find($id);
+        return view('penggajian.read',compact('datapenggajian'));
     }
 
     /**
@@ -131,9 +140,9 @@ class Penggajian_Controller extends Controller
      */
     public function edit($id)
     {
-         $tunjangan=Tunjangan::all();
+         $penggajian=Penggajian::find($id);
          $pegawai=Pegawai::all();
-        return view('penggajian.create',compact('tunjangan','pegawai'));     }
+        return view('penggajian.edit',compact('tunjangan','penggajian'));     }
 
     /**
      * Update the specified resource in storage.
@@ -144,15 +153,17 @@ class Penggajian_Controller extends Controller
      */
     public function update(Request $request, $id)
     {
-        $pegawai = new Pegawai;
-            $pegawai->nip = $request->get('nip');
-            $pegawai->jabatan_id = $request->get('jabatan_id');
-            $pegawai->golongan_id = $request->get('golongan_id');
-            $pegawai->user_id = $user->id;
-            
-            $pegawai->photo = $filename;
-            $pegawai->save();
-             return redirect('pegawai');    }
+        $penggajian = Penggajian::find($id);
+            $penggajian->tunjangan_pegawai_id = $request->get('tunjangan_pegawai_id');
+            $penggajian->jumlah_jam_lembur = $request->get('jumlah_jam_lembur');
+            $penggajian->jumlah_uang_lembur = $request->get('jumlah_uang_lembur');
+              $penggajian->gaji_pokok = $request->get('gaji_pokok');
+                $penggajian->total_gaji = $request->get('total_gaji');
+                  $penggajian->tanggal_pengambilan = $request->get('tanggal_pengambilan');
+                    $penggajian->status_pengembalian = $request->get('status_pengembalian');
+                           $penggajian->petugas_penerima = $request->get('petugas_penerima');
+            $penggajian->save();
+             return redirect('penggajian');    }
 
     /**
      * Remove the specified resource from storage.

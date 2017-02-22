@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Penggajian;
+use App\Models\Pegawai;
 
+use auth;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +26,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+         $penggajian = Penggajian::all();
+         $pegawai=Pegawai::all();
+        return view('home',compact('penggajian','pegawai'));
+    }
+   public function gaji($id){
+        $datapenggajian  = Penggajian::where('id', $id)->first();
+        // dd($data);
+         $penggajian = Penggajian::all();
+         $pegawai=Pegawai::all();
+        return view('penggajian.read', compact('datapenggajian','penggajian','pegawai'));
     }
 }

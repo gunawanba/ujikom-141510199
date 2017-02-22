@@ -15,7 +15,10 @@ class Lembur_Pegawai_Controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-   
+   public function __construct()
+    {
+        $this->middleware('Keuangan');
+    }
     public function index()
     { $lembur_pegawai=Lembur_pegawai::all();  
         $pegawai=Pegawai::all();

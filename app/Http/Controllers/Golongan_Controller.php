@@ -16,12 +16,14 @@ class Golongan_Controller extends Controller
      */
     public function __construct()
     {
-        $this->middleware('hrd');
+        $this->middleware('Admin');
     }
     public function index()
-    {
+    { if(request()->has('kode_golongan')){
+            $guru=Golongan::where('kode_golongan',request('kode_golongan'))->paginate(0);
+        }
          $golongan=Golongan::all();
-      
+     
         return view('golongan.index',compact('golongan'));
     }
 
