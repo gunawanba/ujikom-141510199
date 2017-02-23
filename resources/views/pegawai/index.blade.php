@@ -41,7 +41,7 @@
                                                     <th>Nama Jabatan</th>
                                                     <th>Nama Golongan</th>
                                                     <th>photo</th>
-                                                    <th colspan="2" >Opsi</th>
+                                                    <th colspan="6" >Opsi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -92,6 +92,7 @@
 
                                             </tbody>
                                         </table>
+                                           <?php echo $pegawai->render(); ?>
                                     </div>
 
                                 </div>

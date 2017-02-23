@@ -18,11 +18,14 @@ class Tunjangan_Pegawai_Controller extends Controller
      */
     public function __construct()
     {
-        $this->middleware('Keuangan');
+        $this->middleware('keuangan');
     }
     public function index()
     {
-         $tunjangan_pegawai=Tunjangan_pegawai::all();
+         $tunjangan_pegawai=Tunjangan_pegawai::orderby('id','desc')->paginate(5);
+            if(request()->has('kode_tunjangan')){
+            $tunjangan=Tunjangan::where('kode_tunjangan',request('kode_tunjangan'))->paginate(0);
+        }
         return view('tunjangan_pegawai.index',compact('tunjangan_pegawai'));    }
 
     /**

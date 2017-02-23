@@ -17,12 +17,14 @@ class Tunjangan_Controller extends Controller
      */
     public function __construct()
     {
-        $this->middleware('Admin');
+        $this->middleware('admin');
     }
     public function index()
     {
-         $tunjangan=Tunjangan::all();
-      
+         $tunjangan=Tunjangan::orderby('id','desc')->paginate(5);
+        if(request()->has('kode_tunjangan')){
+            $tunjangan=Tunjangan::where('kode_tunjangan',request('kode_tunjangan'))->paginate(0);
+        }
         return view('tunjangan.index',compact('tunjangan'));    }
 
     /**

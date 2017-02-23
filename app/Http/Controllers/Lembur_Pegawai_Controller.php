@@ -8,6 +8,7 @@ use App\Models\Kategori_lembur;
 use App\Models\Pegawai;
 use Validator;
 use Input;
+use Carbon\Carbon;
 class Lembur_Pegawai_Controller extends Controller
 {
     /**
@@ -17,10 +18,16 @@ class Lembur_Pegawai_Controller extends Controller
      */
    public function __construct()
     {
-        $this->middleware('Keuangan');
+        $this->middleware('keuangan');
     }
     public function index()
-    { $lembur_pegawai=Lembur_pegawai::all();  
+    { 
+       $current = Carbon::now();
+
+// add 30 days to the current time
+$trialExpires = $current->addDays(30);
+        
+        $lembur_pegawai=Lembur_pegawai::orderby('id','desc')->paginate(5);  
         $pegawai=Pegawai::all();
         
          
@@ -31,7 +38,10 @@ class Lembur_Pegawai_Controller extends Controller
        //   $lembur_pegawai=Lembur_pegawai::selectRaw("sum(lembur_pegawais.jumlah_jam) as jumlah_jam,lembur_pegawais.kode_lembur_id as kode_lembur_id,lembur_pegawais.pegawai_id as pegawai_id")
        //  ->GroupBy('kode_lembur_id','pegawai_id')->get();
        // }
-        return view('lembur_pegawai.index',compact('lembur_pegawai'));
+         if(request()->has('kode_lembur')){
+            $lembur_pegawai=Lembur_pegawai::where('kode_lembur',request('kode_lembur'))->paginate(0);
+        }
+        return view('lembur_pegawai.index',compact('lembur_pegawai','trialExpires','current'));
     }
 public function error()
     {
@@ -46,6 +56,7 @@ public function error()
      */
     public function create()
     {
+
       $kategori_lembur=Kategori_lembur::all();
       $pegawai=Pegawai::all();
           return view('lembur_pegawai.create',compact('kategori_lembur','pegawai'));
@@ -80,7 +91,7 @@ public function error()
         else{
           $pegawai=Pegawai::where('id',Request('pegawai_id'))->first();
             $kategori_lembur=Kategori_lembur::where('jabatan_id',$pegawai->jabatan_id)->where('golongan_id',$pegawai->golongan_id)->first();
-            if ($kategori_lembur->id) {
+            if (isset($kategori_lembur->id)) {
                $lembur_pegawai = new Lembur_pegawai;
             $lembur_pegawai->kode_lembur_id = $kategori_lembur->id;
             $lembur_pegawai->pegawai_id = $request->get('pegawai_id');
@@ -89,7 +100,9 @@ public function error()
              $lembur_pegawai->save();
              return redirect('lembur_pegawai');
             }
+            else{
             return redirect('error');
+         }
          }
             
             
@@ -118,9 +131,10 @@ public function error()
      */
     public function edit($id)
     {
-         $lembur_pegawai=Lembur_pegawai::selectRaw("sum(lembur_pegawais.jumlah_jam) as jumlah_jam,lembur_pegawais.kode_lembur_id as kode_lembur_id,lembur_pegawais.pegawai_id as pegawai_id")
-        ->GroupBy('kode_lembur_id','pegawai_id')->get();
-        return view('lembur_pegawai.edit',compact('lembur_pegawai'));
+         $lembur_pegawai=Lembur_pegawai::find($id);
+         $kategori_lembur=Kategori_lembur::all();
+      $pegawai=Pegawai::all();
+        return view('lembur_pegawai.edit',compact('lembur_pegawai','kategori_lembur','pegawai'));
     }
 
     /**

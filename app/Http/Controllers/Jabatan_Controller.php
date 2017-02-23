@@ -15,12 +15,14 @@ class Jabatan_Controller extends Controller
      */
     public function __construct()
     {
-        $this->middleware('Admin');
+        $this->middleware('admin');
     }
     public function index()
     {
-        $jabatan=Jabatan::all();
-      
+        $jabatan=Jabatan::orderby('id','desc')->paginate(5);
+       if(request()->has('kode_jabatan')){
+            $jabatan=Jabatan::where('kode_jabatan',request('kode_jabatan'))->paginate(0);
+        }
         return view('Jabatan.index',compact('jabatan'));
     }
 

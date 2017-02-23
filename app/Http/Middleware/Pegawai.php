@@ -16,12 +16,12 @@ class Pegawai
     public function handle($request, Closure $next)
     {   
         $Penggajian=Penggajian::all();
-        if (auth()->check() && $request->user()->type_user=='Pegawai') {
+        if (auth()->check() && $request->user()->permession=='Pegawai') {
             return redirect()($request);
         }
         else{
       
-        return redirect()->guest('/penggajian/'{{$Penggajian['id']}});
+        return redirect()->guest('/akses');
        }
     }
 }

@@ -24,11 +24,16 @@
 
                         <div class="panel-body">
                             <div class="row">
-                              <form action="{{url('lembur_pegawai')}}/?kode_lembur=kode_lembur"> <input type="text" name="kode_lembur"> <button type="submit" class="btn btn-primary">
+                     
+                            
+                           <form action="{{url('lembur_pegawai')}}/?kode_lembur=kode_lembur"> <input type="text" name="kode_lembur"> <button type="submit" class="btn btn-primary">
                                     cari
                                 </button>
-
                                 </form>
+                                
+                              
+                              
+                                
                                 <div class="col-lg-12">
                                     <div class="table-responsive">
                                         <table class="table table-bordered table-hover table-striped">
@@ -47,7 +52,7 @@
                                                     <td>{{$lembur_pegawais->pegawai->user->name}}</td>
                                                     
                                                     <td>{{$lembur_pegawais->jumlah_jam}}</td>
- <td><a href="{{route('lembur_pegawai.edit',$lembur_pegawais->pegawai_id)}}" class="btn btn-success">Ubah</a></td>
+ <td><a href="{{route('lembur_pegawai.edit',$lembur_pegawais->id)}}" class="btn btn-success">Ubah</a></td>
                <td>
               <form method="POST" action=" {{route('lembur_pegawai.destroy', $lembur_pegawais->id)}} ">
                                 {{csrf_field()}}
@@ -63,6 +68,7 @@
 
                                             </tbody>
                                         </table>
+                                           <?php echo $lembur_pegawai->render(); ?>
                                     </div>
 
                                 </div>

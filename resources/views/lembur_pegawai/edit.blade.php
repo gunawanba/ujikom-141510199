@@ -27,10 +27,10 @@
 
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-           <h3 class="animated fadeInLeft"> kode lembur</h3>
+          
      
-            <input type="text" name="kode_lembur_id" value="{{$lembur_pegawai->kode_lembur_id}}" class="form-control"></input>
-            {{ $errors->first('kode_lembur', ':message')  }}
+            <input type="hidden" name="kode_lembur_id" value="{{$lembur_pegawai->kode_lembur_id}}" class="form-control"></input>
+           
 
     
           <h3 class="animated fadeInLeft">nama pegawai</h3>

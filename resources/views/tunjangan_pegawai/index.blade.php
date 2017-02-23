@@ -61,6 +61,7 @@
 
                                             </tbody>
                                         </table>
+                                           <?php echo $tunjangan_pegawai->render(); ?>
                                     </div>
 
                                 </div>

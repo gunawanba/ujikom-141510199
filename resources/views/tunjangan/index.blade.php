@@ -67,6 +67,7 @@
 
                                             </tbody>
                                         </table>
+                                           <?php echo $tunjangan->render(); ?>
                                     </div>
 
                                 </div>

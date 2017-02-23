@@ -78,6 +78,7 @@
 
                                             </tbody>
                                         </table>
+                                        <?php echo $golongan->render(); ?>
                                     </div>
 
                                 </div>

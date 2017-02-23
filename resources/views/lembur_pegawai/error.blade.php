@@ -44,10 +44,11 @@
        
         <input type="text" name="jumlah_jam" class="form-control" ></input>
          {{ $errors->first('jumlah_jam', ':message')  }}
-            
+             <h3 class="animated fadeInLeft">Kategori Lembur Jabatan Dan Pegawai &nbsp<a href="{{url('/kategori_lembur/create')}}">Klik Dini</a></h3>
 
 <input type="reset" value="Ulang" class="btn btn-danger"> | <input type="submit" value="Tambah" class="btn btn-success"></input>
     </tr>
+
 
                 </div>
             </div>

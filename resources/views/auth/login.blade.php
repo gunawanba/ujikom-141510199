@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bootsrtap Free Admin Template - SIMINTA | Admin Dashboad Template</title>
+    <title>G.G</title>
     <!-- Core CSS - Include with every page -->
     <link href="{{url('assets/plugins/bootstrap/bootstrap.css')}}" rel="stylesheet" />
     <link href="{{url('assets/font-awesome/css/font-awesome.css')}}" rel="stylesheet" />
@@ -21,7 +21,8 @@
        
         <div class="row">
             <div class="col-md-4 col-md-offset-4 text-center logo-margin ">
-              <img src="{{url('assets/img/logo.png')}}" alt=""/>
+            <font color="white"><h1>Silahkan Login</h1></font>
+           {{--    <img src="{{url('assets/img/logo.png')}}" alt=""/> --}}
                 </div>
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">                  

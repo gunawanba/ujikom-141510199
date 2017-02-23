@@ -13,6 +13,7 @@ use App\Models\Lembur_pegawai;
 use Input;
 use auth ;
 use App\Models\Pegawai;
+use Carbon\Carbon;
 class Penggajian_Controller extends Controller
 {
     /**
@@ -22,14 +23,17 @@ class Penggajian_Controller extends Controller
      */
 public function __construct()
     {
-        $this->middleware('Keuangan');
+        $this->middleware('keuangan');
     }
     public function index()
     {
-     
-         $penggajian=Penggajian::all();
-      
-        return view('penggajian.index',compact('penggajian','total')); 
+      $pegawai=Pegawai::all();
+         $penggajian=Penggajian::orderby('id','desc')->paginate(5);
+        
+        if(request()->has('nip')){
+            $pegawai=Pegawai::where('nip',request('nip'))->paginate(0);
+        }
+        return view('penggajian.index',compact('penggajian','pegawai')); 
     }
 
     /**
@@ -73,10 +77,13 @@ public function __construct()
         // dd($wheregolongan);
 
         $penggajian=new Penggajian ;
-        if (isset($wherepenggajian)) {
+        $now=Carbon::now();
+       
+        if ($wherepenggajian->created_at->addDays(30)==$now->addDays(30)) {
+        $tunjangan=Tunjangan_Pegawai::paginate(10);
             $error=true ;
-            $tunjangan=Tunjangan_Pegawai::paginate(10);
-            return view('penggajian.create',compact('tunjangan','error'));
+            
+            return view('penggajian.create',compact('tunjangan','error','trialExpires'));
         }
         elseif (!isset($wherelemburpegawai)) {
             $nol=0 ;
@@ -100,7 +107,7 @@ public function __construct()
         $penggajian->petugas_penerima=auth::user()->name ;
         $penggajian->save();
         }
-        else{
+       else{
             $nol=0 ;
             $penggajian->jumlah_jam_lembur=$nol;
             $penggajian->jumlah_uang_lembur=$nol ;

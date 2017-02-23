@@ -20,11 +20,14 @@ class Kategori_Lembur_Controller extends Controller
      */
     public function __construct()
     {
-        $this->middleware('Admin');
+        $this->middleware('admin');
     }
     public function index()
     {
-        $kategori_lembur=Kategori_lembur::all();
+        $kategori_lembur=Kategori_lembur::orderby('id','desc')->paginate(5);
+        if(request()->has('kode_lembur')){
+            $kategori_lembur=Kategori_lembur::where('kode_lembur',request('kode_lembur'))->paginate(0);
+        }
         return view('kategori_lembur.index',compact('kategori_lembur'));
     }
 

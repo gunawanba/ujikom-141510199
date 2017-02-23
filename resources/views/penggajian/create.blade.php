@@ -34,8 +34,12 @@
                                             <option  value="{{$datatunjangan->id}}" >{{$datatunjangan->pegawai->User->name}}</option>
                                         @endforeach
                                     </select>
+                                        @if(isset($error))
+                                            Check Lagi Gaji Sudah Ada
+                                        @endif
                                     <tr>
                                     <input type="hidden" name="status_pengembalian" value="0">
+                                    <input type="hidden" name="tanggal_pengambalian" value={{date('Y-m-d')}}>
         <td colspan="2" align="right"><input type="reset" value="Ulang" class="btn btn-danger"> | <input type="submit" value="Tambah" class="btn btn-success"></input></td>
     </tr>
     </h3>

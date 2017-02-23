@@ -60,6 +60,7 @@
 
                                             </tbody>
                                         </table>
+                                           <?php echo $jabatan->render(); ?>
                                     </div>
 
                                 </div>

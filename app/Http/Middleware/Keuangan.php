@@ -15,7 +15,10 @@ class Keuangan
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->check() && $request->user()->type_user=='Keuangan') {
+        if (auth()->check() && $request->user()->permession=='Admin') {
+            return $next($request);
+        }
+        else if (auth()->check() && $request->user()->permession=='Keuangan') {
             return $next($request);
         }
         else{

@@ -64,6 +64,7 @@
 
                                             </tbody>
                                         </table>
+                                           <?php echo $kategori_lembur->render(); ?>
                                     </div>
 
                                 </div>

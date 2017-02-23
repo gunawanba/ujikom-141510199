@@ -88,6 +88,7 @@
                         @endforeach
                         
                     </table>
+                       <?php echo $penggajian->render(); ?>
                                     </div>
 
                                 </div>

@@ -15,16 +15,16 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->check() && $request->user()->type_user=='Admin') {
+        if (auth()->check() && $request->user()->permession=='Admin') {
             return $next($request);
         }
-      elseif (auth()->check() && $request->user()->type_user=='Hrd') {
+      elseif (auth()->check() && $request->user()->permession=='Hrd') {
          return $next($request); 
       }
-      elseif (auth()->check() && $request->user()->type_user=='Keuangan') {
+      elseif (auth()->check() && $request->user()->permession=='Keuangan') {
        return $next($request);   
       }
-      elseif (auth()->check() && $request->user()->type_user=='Pegawai') {
+      elseif (auth()->check() && $request->user()->permession=='Pegawai') {
        return $next($request);   
       }
 

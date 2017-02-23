@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Pegawai;
 use App\Models\Golongan;
 use App\Models\Jabatan;
+use App\Models\Kategori_lembur;
 use App\User;
 
 use App\Http\Controllers\Controller;
@@ -26,14 +27,17 @@ class Pegawai_Controller extends Controller
         use RegistersUsers;
         public function __construct()
     {
-        $this->middleware('Hrd');
+        $this->middleware('hrd');
     }
     public function index()
     {
-        $pegawai=Pegawai::all();
+        $pegawai=Pegawai::orderby('id','desc')->paginate(5);
         // $golongan=Golongan::all();
         // $jabatan=Jabatan::all();
         // $user=User::all();
+          if(request()->has('nip')){
+            $pegawai=Pegawai::where('nip',request('nip'))->paginate(0);
+        }
         return view('pegawai.index',compact('pegawai','golongan','user','jabatan'));    
     }
 
@@ -108,8 +112,23 @@ class Pegawai_Controller extends Controller
             
             $pegawai->photo = $filename;
             $pegawai->save();
+            $lama = kategori_lembur::where('jabatan_id',$pegawai->jabatan_id)->where('golongan_id',$pegawai->golongan_id)->first();
+            // dd($lama);
+            if (isset($lama)) {
+            $error=true ;
+            $pegawai=pegawai::paginate(5);
+            return view('pegawai.index',compact('pegawai'));
+        }
+    }
+             $kategorilembur=new kategori_lembur ;
+         $kategorilembur->jabatan_id =$pegawai->jabatan_id;
+         $kategorilembur->golongan_id=$pegawai->golongan_id;
+         $a =date('dmys');
+         $kategorilembur->kode_lembur="KODEKAT".$a."-".$pegawai->jabatan_id."-".$pegawai->golongan_id ;
+         $kategorilembur->besaran_uang=0 ;
+         $kategorilembur->save();
              return redirect('pegawai');
-         }
+         
     }
 
     /**
