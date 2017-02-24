@@ -37,7 +37,7 @@
    
            <select name="jabatan_id" class="form-control">
             @foreach ($jabatan as $jabatans)
-            <option value="{{$jabatans->id}}">{{$jabatans->kode_jabatan}}</option>
+            <option value="{{$jabatans->id}}">{{$jabatans->kode_jabatan}}&nbsp&nbsp&nbsp{{$jabatans->nama_jabatan}}</option>
             @endforeach
             </select>
 
@@ -46,7 +46,7 @@
   
               <select name="golongan_id" class="form-control">
             @foreach ($golongan as $golongans)
-            <option value="{{$golongans->id}}">{{$golongans->nama_golongan}}</option>
+            <option value="{{$golongans->id}}">{{$golongans->kode_golongan}}&nbsp{{$golongans->nama_golongan}}</option>
             @endforeach
             </select>
    

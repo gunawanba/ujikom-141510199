@@ -79,13 +79,16 @@ public function __construct()
         $penggajian=new Penggajian ;
         $now=Carbon::now();
        
-        if ($wherepenggajian->created_at->addDays(30)==$now->addDays(30)) {
-        $tunjangan=Tunjangan_Pegawai::paginate(10);
-            $error=true ;
+        // if (isset($wherepenggajian)) {
+
+        // $tunjangan=Tunjangan_Pegawai::paginate(10);
+        //     $error=true ;
             
-            return view('penggajian.create',compact('tunjangan','error','trialExpires'));
-        }
-        elseif (!isset($wherelemburpegawai)) {
+        //     return view('penggajian.create',compact('tunjangan','error','trialExpires'));
+        // }
+      
+            
+       if (!isset($wherelemburpegawai)) {
             $nol=0 ;
             $penggajian->jumlah_jam_lembur=$nol;
             $penggajian->jumlah_uang_lembur=$nol ;

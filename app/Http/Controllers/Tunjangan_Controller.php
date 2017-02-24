@@ -50,8 +50,8 @@ class Tunjangan_Controller extends Controller
         $rules = array(
             'kode_tunjangan'=>'required|unique:tunjangans',
             'status'=>'required',
-            'jumlah_anak'=>'required',
-            'besaran_uang'=>'required'
+            'jumlah_anak'=>'required|min:11|numeric',
+            'besaran_uang'=>'required|'
             );
 
         $message= array(
@@ -60,6 +60,8 @@ class Tunjangan_Controller extends Controller
             'kode_tunjangan.required'=>'Maaf Data Masih Kosong',
             'kode_tunjangan.unique'=>'data sudah ada',
             'jumlah_anak.required'=>'Maaf Data Masih Kosong',
+            'besaran_uang.min'=>'Maaf Anda Salah Memasukan Isian',
+            'besaran_uang.numeric'=>'Maaf Data Masih Kosong',
             'besaran_uang.required'=>'Maaf Data Masih Kosong'
             
             );
@@ -114,7 +116,7 @@ class Tunjangan_Controller extends Controller
             'kode_tunjangan'=>'required|unique:golongans',
             'status'=>'required',
             'jumlah_anak'=>'required',
-            'besaran_uang'=>'required'
+            'besaran_uang'=>'required|min:11|numeric'
             );
            }
            else{
@@ -122,7 +124,7 @@ class Tunjangan_Controller extends Controller
             'kode_tunjangan'=>'required',
             'status'=>'required',
             'jumlah_anak'=>'required',
-            'besaran_uang'=>'required'
+            'besaran_uang'=>'required|min:11|numeric'
             );
            }
          
@@ -133,6 +135,8 @@ class Tunjangan_Controller extends Controller
             'kode_tunjangan.required'=>'Maaf Data Masih Kosong',
             'kode_tunjangan.unique'=>'data sudah ada',
             'jumlah_anak.required'=>'Maaf Data Masih Kosong',
+        'besaran_uang.min'=>'Maaf Anda Salah Memasukan Isian',
+            'besaran_uang.numeric'=>'Maaf Data Masih Kosong',
             'besaran_uang.required'=>'Maaf Data Masih Kosong'
             
             );

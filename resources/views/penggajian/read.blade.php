@@ -22,25 +22,34 @@
                         
                         <div class="col-md-12">
                         <center>
-                            <p><img width="120px" height="100px" src="<?php echo url('assets/image/') ?>/<?php echo $datapenggajian->tunjangan_pegawai->pegawai->photo; ?>" class="img-circle" alt="Cinque Terre" ></p>
+                            <p><h3 class="animated fadeInLeft"><img width="120px" height="100px" src="<?php echo url('assets/image/') ?>/<?php echo $datapenggajian->tunjangan_pegawai->pegawai->photo; ?>" class="img-circle" alt="Cinque Terre" ></h3></p>
 
-                        <h3>{{$datapenggajian->tunjangan_pegawai->pegawai->User->name}}</h3>
-                        <h4>{{$datapenggajian->tunjangan_pegawai->pegawai->nip}}</h4>
+                        <h3 class="animated fadeInLeft">{{$datapenggajian->tunjangan_pegawai->pegawai->User->name}}</h3>
+                        <h3 class="animated fadeInLeft">{{$datapenggajian->tunjangan_pegawai->pegawai->nip}}</h4>
                         <b>@if($datapenggajian->tanggal_pengambilan == ""&&$datapenggajian->status_pengambilan == "0")
-                            Gaji Belum Diambil
+                          <h3 class="animated fadeInLeft">  Gaji Belum Diambil</h3>
                         @elseif($datapenggajian->tanggal_pengambilan == ""||$datapenggajian->status_pengambilan == "0")
-                            Gaji Belum Diambil
+                            <h3 class="animated fadeInLeft">Gaji Belum Diambil</h3>
                         @else
-                            Gaji Sudah Diambil Pada {{$datapenggajian->tanggal_pengambilan}}
+
+                           <h3 class="animated fadeInLeft"> Gaji Sudah Diambil Pada     <br>{{$datapenggajian->tanggal_pengambilan}}</h3>
                         @endif</b>
-                        <h5>Gaji Lembur Sebesar Rp.{{$datapenggajian->jumlah_uang_lembur}} ,Gaji Pokok Sebesar Rp.{{$datapenggajian->gaji_pokok}} ,Mendapat Tunjangan Sebesar Rp.{{$datapenggajian->tunjangan_pegawai->tunjangan->besaran_uang}} ,Jadi Total Gaji Rp.{{$datapenggajian->total_gaji}}
+                          <h4 class="animated fadeInLeft">
+                          <br> Jabatan&nbsp:&nbsp{{$datapenggajian->tunjangan_pegawai->tunjangan->jabatan->nama_jabatan}}
+                           <br> Golongan&nbsp:&nbsp{{$datapenggajian->tunjangan_pegawai->tunjangan->golongan->nama_golongan}}
+                          <br> Status :{{$datapenggajian->tunjangan_pegawai->tunjangan->status}}<br> Total Jam Lembur&nbsp{{$datapenggajian->jumlah_jam_lembur}}&nbspJam<br>Jumlah Lembur Sebesar Rp.{{$datapenggajian->jumlah_uang_lembur}}
+                          <br> Gaji Pokok Sebesar Rp.{{$datapenggajian->gaji_pokok}}<br>
+                          
+                           Mendapat Tunjangan Sebesar Rp.{{$datapenggajian->tunjangan_pegawai->tunjangan->besaran_uang}}
+
+                          <br> Jadi Total Gaji Rp.{{$datapenggajian->total_gaji}}
 
 
 
                         </h5>
-                        @if(Auth::user()->permession=='Admin'||Auth::user()->permession=='Hrd')
+                        @if(Auth::user()->permession=='Admin')
                                 <a class="btn btn-primary col-md-12" href="{{url('penggajian')}}">Kembali</a>
-                             @elseif(Auth::user()->permession=='Pegawai')
+                             @elseif(Auth::user()->permession=='Pegawai'||Auth::user()->permession=='Hrd'||Auth::user()->permession=='Keuangan')
                              <a class="btn btn-primary col-md-12" href="{{url('/')}}">Kembali</a>
                              @endif   
                         </center>

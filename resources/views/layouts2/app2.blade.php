@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	
-	<meta charset="utf-8">
-	<meta name="description" content="Gaji">
-	<meta name="author" content="Isna Nur Azis">
-	<meta name="keyword" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta charset="utf-8">
+  <meta name="description" content="Gaji">
+  <meta name="author" content="Isna Nur Azis">
+  <meta name="keyword" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Miminium</title>
  
     <!-- start: Css -->
@@ -23,10 +23,10 @@
   <link rel="stylesheet" type="text/css" href="{{url('assets2/asset/css/plugins/ionrangeslider/ion.rangeSlider.css')}}"/>
   <link rel="stylesheet" type="text/css" href="{{url('assets2/asset/css/plugins/ionrangeslider/ion.rangeSlider.skinFlat.css')}}"/>
   <link rel="stylesheet" type="text/css" href="{{url('assets2/asset/css/plugins/bootstrap-material-datetimepicker.css')}}"/>
-	<link href="{{url('assets2/asset/css/style.css')}}" rel="stylesheet">
-	<!-- end: Css -->
+  <link href="{{url('assets2/asset/css/style.css')}}" rel="stylesheet">
+  <!-- end: Css -->
 
-	<link rel="shortcut icon" href="{{url('assets2/asset/img/logomi.png')}}">
+  <link rel="shortcut icon" href="{{url('assets2/asset/img/logomi.png')}}">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -148,6 +148,23 @@
                     </li>
                     </a>
                     @elseif(Auth::user()->permession=='Hrd')
+                     <label> <h3>Lihat Penggajian</h3></label>
+                    @foreach($penggajian as $penggajians)
+                    @foreach($pegawai as $pegawais)
+                    @if(Auth::user()->id ==$pegawais->user_id)
+                    @if($penggajians->tunjangan_pegawai->pegawai_id == $pegawais->id)
+                   @if($penggajians->tanggal_pengambilan=="")
+
+                    @else
+
+                    <a href="{{url('/gaji/'.$penggajians->id)}}"><li class="ripple"><span class="fa fa-table"></span>{{ $penggajians->tanggal_pengambilan}} </span> 
+                    
+                    </li></a>
+                   @endif
+                    @endif
+                  @endif
+                    @endforeach
+                    @endforeach
                      <a href="{{url('pegawai')}}">
                     <li class="ripple"><span class="fa fa-table"></span> Pegawai  </span> 
                     
@@ -170,6 +187,24 @@
                     
                     </li>
                     </a>
+
+                      <label> <h3>Lihat Penggajian</h3></label>
+                    @foreach($penggajian as $penggajians)
+                    @foreach($pegawai as $pegawais)
+                    @if(Auth::user()->id ==$pegawais->user_id)
+                    @if($penggajians->tunjangan_pegawai->pegawai_id == $pegawais->id)
+                   @if($penggajians->tanggal_pengambilan=="")
+
+                    @else
+
+                    <a href="{{url('/gaji/'.$penggajians->id)}}"><li class="ripple"><span class="fa fa-table"></span>{{ $penggajians->tanggal_pengambilan}} </span> 
+                    
+                    </li></a>
+                   @endif
+                    @endif
+                  @endif
+                    @endforeach
+                    @endforeach
                @else
                <label> <h3>Lihat Penggajian</h3></label>
                     @foreach($penggajian as $penggajians)
@@ -189,13 +224,14 @@
                     @endforeach
                     @endforeach
                     @endif
+                     
                    
                   </ul>
                 </div>
             </div>
           <!-- end: Left Menu -->
 
-  		
+      
           <!-- start: content -->
          
 
@@ -247,24 +283,18 @@
      <script src="{{url('assets2/asset/js/main.js')}}"></script>
      <script type="text/javascript">
       (function(jQuery){
-
         // start: Chart =============
-
         Chart.defaults.global.pointHitDetectionRadius = 1;
         Chart.defaults.global.customTooltips = function(tooltip) {
-
             var tooltipEl = $('#chartjs-tooltip');
-
             if (!tooltip) {
                 tooltipEl.css({
                     opacity: 0
                 });
                 return;
             }
-
             tooltipEl.removeClass('above below');
             tooltipEl.addClass(tooltip.yAlign);
-
             var innerHtml = '';
             if (undefined !== tooltip.labels && tooltip.labels.length) {
                 for (var i = tooltip.labels.length - 1; i >= 0; i--) {
@@ -277,7 +307,6 @@
                 }
                 tooltipEl.html(innerHtml);
             }
-
             tooltipEl.css({
                 opacity: 1,
                 left: tooltip.chart.canvas.offsetLeft + tooltip.x + 'px',
@@ -312,7 +341,6 @@
                 data: [4,7,5,7,4.5,4,5,4.5,6,5.6,7.5]
             }]
         };
-
         var doughnutData = [
                 {
                     value: 300,
@@ -344,10 +372,7 @@
                     highlight: "#15BA67",
                     label: "X"
                 }
-
             ];
-
-
         var doughnutData2 = [
                 {
                     value: 100,
@@ -379,9 +404,7 @@
                     highlight: "#15BA67",
                     label: "X"
                 }
-
             ];
-
         var barChartData = {
                 labels: ["January", "February", "March", "April", "May", "June", "July"],
                 datasets: [
@@ -403,14 +426,12 @@
                     }
                 ]
             };
-
          window.onload = function(){
                 var ctx = $(".doughnut-chart")[0].getContext("2d");
                 window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {
                     responsive : true,
                     showTooltips: true
                 });
-
                 var ctx2 = $(".line-chart")[0].getContext("2d");
                 window.myLine = new Chart(ctx2).Line(lineChartData, {
                      responsive: true,
@@ -418,23 +439,19 @@
                         multiTooltipTemplate: "<%= value %>",
                      maintainAspectRatio: false
                 });
-
                 var ctx3 = $(".bar-chart")[0].getContext("2d");
                 window.myLine = new Chart(ctx3).Bar(barChartData, {
                      responsive: true,
                         showTooltips: true
                 });
-
                 var ctx4 = $(".doughnut-chart2")[0].getContext("2d");
                 window.myDoughnut2 = new Chart(ctx4).Doughnut(doughnutData2, {
                     responsive : true,
                     showTooltips: true
                 });
-
             };
         
         //  end:  Chart =============
-
         // start: Calendar =========
          $('.dashboard .calendar').fullCalendar({
             header: {
@@ -466,7 +483,6 @@
                     title: 'Party',
                     start: '2015-02-29T20:00:00'
                 },
-
                 // areas where "Meeting" must be dropped
                 {
                     id: 'availableForMeeting',
@@ -480,7 +496,6 @@
                     end: '2015-02-13T16:00:00',
                     rendering: 'background'
                 },
-
                 // red areas where no events can be dropped
                 {
                     start: '2015-02-24',
@@ -499,9 +514,7 @@
             ]
         });
         // end : Calendar==========
-
         // start: Maps============
-
           jQuery('.maps').vectorMap({
             map: 'world_en',
             backgroundColor: null,
@@ -514,9 +527,7 @@
             scaleColors: ['#C8EEFF', '#006491'],
             normalizeFunction: 'polynomial'
         });
-
         // end: Maps==============
-
       })(jQuery);
      </script>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Penggajian;
 use App\Models\Lembur_pegawai;
 use App\Models\Kategori_lembur;
 use App\Models\Pegawai;
@@ -22,6 +23,7 @@ class Lembur_Pegawai_Controller extends Controller
     }
     public function index()
     { 
+        $penggajian=Penggajian::all();
        $current = Carbon::now();
 
 // add 30 days to the current time
@@ -39,15 +41,16 @@ $trialExpires = $current->addDays(30);
        //  ->GroupBy('kode_lembur_id','pegawai_id')->get();
        // }
          if(request()->has('kode_lembur')){
-            $lembur_pegawai=Lembur_pegawai::where('kode_lembur',request('kode_lembur'))->paginate(0);
+            $lembur_pegawai=Lembur_pegawai::where('kode_lembur',request('kode_lembur','penggajian','pegawai'))->paginate(0);
         }
-        return view('lembur_pegawai.index',compact('lembur_pegawai','trialExpires','current'));
+        return view('lembur_pegawai.index',compact('lembur_pegawai','trialExpires','pegawai','penggajian'));
     }
 public function error()
     {
+        $penggajian=Penggajian::all();
       $kategori_lembur=Kategori_lembur::all();
       $pegawai=Pegawai::all();
-          return view('lembur_pegawai.error',compact('kategori_lembur','pegawai'));
+          return view('lembur_pegawai.error',compact('kategori_lembur','pegawai','penggajian'));
     }
     /**
      * Show the form for creating a new resource.
@@ -56,10 +59,10 @@ public function error()
      */
     public function create()
     {
-
+        $penggajian=Penggajian::all();
       $kategori_lembur=Kategori_lembur::all();
       $pegawai=Pegawai::all();
-          return view('lembur_pegawai.create',compact('kategori_lembur','pegawai'));
+          return view('lembur_pegawai.create',compact('kategori_lembur','pegawai','penggajian'));
     }
 
     /**
@@ -131,10 +134,11 @@ public function error()
      */
     public function edit($id)
     {
+        $penggajian=Penggajian::all();
          $lembur_pegawai=Lembur_pegawai::find($id);
          $kategori_lembur=Kategori_lembur::all();
       $pegawai=Pegawai::all();
-        return view('lembur_pegawai.edit',compact('lembur_pegawai','kategori_lembur','pegawai'));
+        return view('lembur_pegawai.edit',compact('lembur_pegawai','kategori_lembur','pegawai','penggajian'));
     }
 
     /**

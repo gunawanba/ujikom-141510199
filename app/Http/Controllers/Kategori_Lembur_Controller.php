@@ -55,7 +55,7 @@ class Kategori_Lembur_Controller extends Controller
             'kode_lembur'=>'required|unique:kategori_lemburs',
             'jabatan_id'=>'required',
             'golongan_id'=>'required',
-            'besaran_uang'=>'required'
+            'besaran_uang'=>'required|min:11|numeric'
             );
 
         $message= array(
@@ -64,6 +64,8 @@ class Kategori_Lembur_Controller extends Controller
              'golongan_id.required'=>'Maaf Data Masih Kosong',
             'kode_lembur.required'=>'Maaf Data Masih Kosong',
             'kode_lembur.unique'=>'data sudah ada',
+            'besaran_uang.min'=>'Maaf Anda Salah Memasukan Isian',
+            'besaran_uang.numeric'=>'Maaf Data Masih Kosong',
             'besaran_uang.required'=>'Maaf Data Masih Kosong'
             
             );

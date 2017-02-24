@@ -46,15 +46,17 @@ class Jabatan_Controller extends Controller
     {
          $rules = array(
             'kode_jabatan'=>'required|unique:jabatans',
-            'nama_jabatan'=>'required',
-            'besaran_uang'=>'required'
+            'nama_jabatan'=>'required|unique:jabatans',
+            'besaran_uang'=>'required|min:11|numeric'
             );
 
         $message= array(
-            
+            'nama_jabatan.unique'=>'data sudah ada',
             'nama_jabatan.required'=>'Maaf Data Masih Kosong',
             'kode_jabatan.required'=>'Maaf Data Masih Kosong',
             'kode_jabatan.unique'=>'data sudah ada',
+            'besaran_uang.min'=>'Maaf Anda Salah Memasukan Isian',
+            'besaran_uang.numeric'=>'Maaf Anda Salah Memasukan Isian',
             'besaran_uang.required'=>'Maaf Data Masih Kosong'
             
             );
@@ -104,27 +106,28 @@ class Jabatan_Controller extends Controller
     {
         $jabatan=Jabatan::where('id',$id)->first();
            if ($jabatan['kode_jabatan'] !=Request('kode_jabatan')) {
-              $rules = array(
+                $rules = array(
             'kode_jabatan'=>'required|unique:jabatans',
-            'nama_jabatan'=>'required',
-            'besaran_uang'=>'required'
-            );
-           }
+            'nama_jabatan'=>'required|unique:jabatans',
+            'besaran_uang'=>'required|min:11|numeric'
+            );           }
            else{
-            $rules = array(
+             $rules = array(
             'kode_jabatan'=>'required',
-            'nama_jabatan'=>'required',
-            'besaran_uang'=>'required'
+            'nama_jabatan'=>'required|unique:jabatans',
+            'besaran_uang'=>'required|min:11|numeric'
             );
            }
 
         
 
-        $message= array(
-            
+       $message= array(
+            'nama_jabatan.unique'=>'data sudah ada',
             'nama_jabatan.required'=>'Maaf Data Masih Kosong',
             'kode_jabatan.required'=>'Maaf Data Masih Kosong',
-            
+            'kode_jabatan.unique'=>'data sudah ada',
+            'besaran_uang.min'=>'Maaf Anda Salah Memasukan Isian',
+            'besaran_uang.numeric'=>'Maaf Anda Salah Memasukan Isian',
             'besaran_uang.required'=>'Maaf Data Masih Kosong'
             
             );

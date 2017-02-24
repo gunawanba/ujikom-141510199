@@ -34,7 +34,7 @@
            <select name="pegawai_id" class="form-control">
             <option value="">Siliahkan Pilih</option>
             @foreach ($pegawai as $pegawais)
-            <option value="{{$pegawais->id}}">{{$pegawais->user->name}}</option>
+            <option value="{{$pegawais->id}}">{{$pegawais->nip}}&nbsp{{$pegawais->user->name}}</option>
             @endforeach
             </select>
             {{ $errors->first('pegawai_id', ':message')  }}

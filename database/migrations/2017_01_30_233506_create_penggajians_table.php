@@ -21,7 +21,7 @@ class CreatePenggajiansTable extends Migration
             $table->integer('jumlah_uang_lembur');
             $table->integer('gaji_pokok');
             $table->integer('total_gaji');
-            $table->date('tanggal_pengambilan');
+            $table->date('tanggal_pengambilan')->nulllable();
             $table->boolean('status_pengembalian');
             $table->string('petugas_penerima'); 
             $table->timestamps();

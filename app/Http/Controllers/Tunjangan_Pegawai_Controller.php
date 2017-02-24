@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Request;
+use App\Models\Penggajian;
 use App\Models\Tunjangan;
 use App\Models\Pegawai;
 use App\Models\Tunjangan_pegawai;
@@ -22,11 +23,13 @@ class Tunjangan_Pegawai_Controller extends Controller
     }
     public function index()
     {
+        $penggajian=Penggajian::all();
+        $pegawai=Pegawai::all();
          $tunjangan_pegawai=Tunjangan_pegawai::orderby('id','desc')->paginate(5);
             if(request()->has('kode_tunjangan')){
             $tunjangan=Tunjangan::where('kode_tunjangan',request('kode_tunjangan'))->paginate(0);
         }
-        return view('tunjangan_pegawai.index',compact('tunjangan_pegawai'));    }
+        return view('tunjangan_pegawai.index',compact('tunjangan_pegawai','penggajian','pegawai'));    }
 
     /**
      * Show the form for creating a new resource.
@@ -35,9 +38,10 @@ class Tunjangan_Pegawai_Controller extends Controller
      */
     public function create()
     {
+        $penggajian=Penggajian::all();
          $tunjangan=Tunjangan::all();
          $pegawai=Pegawai::all();
-        return view('tunjangan_pegawai.create',compact('tunjangan','pegawai'));    }
+        return view('tunjangan_pegawai.create',compact('tunjangan','pegawai','penggajian'));    }
 
     /**
      * Store a newly created resource in storage.
@@ -48,14 +52,14 @@ class Tunjangan_Pegawai_Controller extends Controller
     public function store(Request $request)
     { $rules = array(
             
-            'kode_tunjangan_id'=>'required|unique:tunjangan_pegawais',
+            'kode_tunjangan_id'=>'required',
             'pegawai_id'=>'required'
             );
 
         $message= array(
             
             'pegawai_id.required'=>'Maaf Data Masih Kosong',
-           'kode_tunjangan_id.unique'=>'data sudah ada',
+          
             'kode_tunjangan_id.required'=>'Maaf Data Masih Kosong'
             
             );
@@ -92,7 +96,8 @@ class Tunjangan_Pegawai_Controller extends Controller
         $tunjangan_pegawai=Tunjangan_pegawai::find($id);
         $tunjangan=Tunjangan::all();
          $pegawai=Pegawai::all();
-        return view('tunjangan_pegawai.edit',compact('tunjangan_pegawai','tunjangan','pegawai'));    }
+         $penggajian=Penggajian::all();
+        return view('tunjangan_pegawai.edit',compact('tunjangan_pegawai','tunjangan','pegawai','penggajian'));    }
 
     /**
      * Update the specified resource in storage.

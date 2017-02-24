@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+
     use Notifiable;
 
     /**
@@ -28,6 +29,7 @@ class User extends Authenticatable
     ];
 
      public function pegawai() {
+        
         return $this->belongsTo('App\Models\Pegawai', 'user_id');
     }
 }

@@ -12,11 +12,12 @@
 */
 
 Route::get('/ss', function () {
-    return view('layouts2.test');
+    return view('layouts2.app2');
 });
 
 Auth::routes();
-
+Route::get('user/create', 'HomeController@user_create');
+Route::post('user/restore', 'HomeController@user_restore');
 Route::get('/', 'HomeController@index');
 Route::resource('/jabatan','Jabatan_Controller');
 Route::get('gaji/{id}', 'HomeController@gaji');
@@ -30,4 +31,20 @@ Route::resource('/penggajian','Penggajian_Controller');
 Route::get('error', 'Lembur_pegawai_Controller@error');
 Route::get('/akses', function () {
     return view('akses');
+});
+
+
+
+Route::group(['middleware' => ['api','cors'],'prefix' => 'api'], function () {
+
+    Route::post('register', 'APIController@register');
+
+    Route::post('login', 'APIController@login');
+
+    Route::group(['middleware' => 'jwt-auth'], function () {
+
+    	Route::post('get_user_details', 'APIController@get_user_details');
+
+    });
+
 });

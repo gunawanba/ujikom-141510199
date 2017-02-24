@@ -47,15 +47,18 @@ class Golongan_Controller extends Controller
     {
        $rules = array(
             'kode_golongan'=>'required|unique:golongans',
-            'nama_golongan'=>'required',
-            'besaran_uang'=>'required'
+            'nama_golongan'=>'required|unique:golongans',
+            'besaran_uang'=>'required|min:11|numeric'
             );
 
         $message= array(
             
             'nama_golongan.required'=>'Maaf Data Masih Kosong',
             'kode_golongan.required'=>'Maaf Data Masih Kosong',
+            'nama_golongan.unique'=>'data sudah ada',
             'kode_golongan.unique'=>'data sudah ada',
+            'besaran_uang.numeric'=>'Maaf Anda Salah Memasukan Isian',
+            'besaran_uang.min'=>'Maaf Anda Melebihi Isian Maksimal:11 Isian',
             'besaran_uang.required'=>'Maaf Data Masih Kosong'
             
             );
@@ -106,24 +109,27 @@ class Golongan_Controller extends Controller
         
            $golongan=Golongan::where('id',$id)->first();
            if ($golongan['kode_golongan'] !=Request('kode_golongan')) {
-                $rules = array(
+               $rules = array(
             'kode_golongan'=>'required|unique:golongans',
-            'nama_golongan'=>'required',
-            'besaran_uang'=>'required'
+            'nama_golongan'=>'required|unique:golongans',
+            'besaran_uang'=>'required|min:11|numeric'
             );
            }
            else{
-            $rules = array(
+             $rules = array(
             'kode_golongan'=>'required',
-            'nama_golongan'=>'required',
-            'besaran_uang'=>'required'
+            'nama_golongan'=>'required|unique:golongans',
+            'besaran_uang'=>'required|min:11|numeric'
             );
            }
-        $message= array(
+         $message= array(
             
             'nama_golongan.required'=>'Maaf Data Masih Kosong',
             'kode_golongan.required'=>'Maaf Data Masih Kosong',
+            'nama_golongan.unique'=>'data sudah ada',
             'kode_golongan.unique'=>'data sudah ada',
+            'besaran_uang.numeric'=>'Maaf Anda Salah Memasukan Isian',
+            'besaran_uang.min'=>'Maaf Anda Melebihi Isian Maksimal:11 Isian',
             'besaran_uang.required'=>'Maaf Data Masih Kosong'
             
             );

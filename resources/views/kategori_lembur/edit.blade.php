@@ -29,27 +29,16 @@
             {{ $errors->first('kode_lembur', ':message')  }}
    
  
-            <h3 class="animated fadeInLeft">nama jabatan</h3>
-   
-           <select name="jabatan_id" class="form-control">
-           <option value="">Silahkan Pilih</option>
-            @foreach ($jabatan as $jabatans)
-            <option value="{{$jabatans->id}}">{{$jabatans->nama_jabatan}}</option>
-            @endforeach
-            </select>
-             {{ $errors->first('jabatan_id', ':message')  }}
+            
+   <input type="hidden" name="jabatan_id" value="{{$kategori_lembur->jabatan_id}}" class="form-control"></input>
+          
      
   
-            <h3 class="animated fadeInLeft">Nama Golongan</h3>
+           
+   <input type="hidden" name="golongan_id" value="{{$kategori_lembur->golongan_id}}" class="form-control"></input>
+          
      
-              <select name="golongan_id" class="form-control">
-              <option value="">Silahkan Pilih</option>
-            @foreach ($golongan as $golongans)
-            <option value="{{$golongans->id}}">{{$golongans->nama_golongan}}</option>
-            @endforeach
-            </select>
-                {{ $errors->first('golongan_id', ':message')  }}
-  
+           
      
             <h3 class="animated fadeInLeft">berasan uang</h3>
      

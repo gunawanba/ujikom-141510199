@@ -8,7 +8,7 @@ use App\Models\Golongan;
 use App\Models\Jabatan;
 use App\Models\Kategori_lembur;
 use App\User;
-
+use App\Models\Penggajian;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -31,6 +31,7 @@ class Pegawai_Controller extends Controller
     }
     public function index()
     {
+        $penggajian=Penggajian::all();
         $pegawai=Pegawai::orderby('id','desc')->paginate(5);
         // $golongan=Golongan::all();
         // $jabatan=Jabatan::all();
@@ -38,7 +39,7 @@ class Pegawai_Controller extends Controller
           if(request()->has('nip')){
             $pegawai=Pegawai::where('nip',request('nip'))->paginate(0);
         }
-        return view('pegawai.index',compact('pegawai','golongan','user','jabatan'));    
+        return view('pegawai.index',compact('pegawai','golongan','user','jabatan','penggajian'));    
     }
 
     /**
@@ -48,9 +49,11 @@ class Pegawai_Controller extends Controller
      */
     public function create()
     {
+        $penggajian=Penggajian::all();
+        $pegawai=Pegawai::all();
         $jabatan=Jabatan::all();
          $golongan=Golongan::all();
-        return view('pegawai.create',compact('jabatan','golongan'));
+        return view('pegawai.create',compact('jabatan','golongan','penggajian','pegawai'));
     }
 
     /**
@@ -150,11 +153,12 @@ class Pegawai_Controller extends Controller
      */
     public function edit($id)
     {
+        $penggajian=Penggajian::all();
          
          $pegawai=Pegawai::find($id);
          $jabatan=Jabatan::all();
          $golongan=Golongan::all();
-         return view('pegawai.edit',compact('pegawai','jabatan','golongan'));
+         return view('pegawai.edit',compact('pegawai','jabatan','golongan','penggajian'));
     }
 
     /**

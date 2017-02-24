@@ -41,12 +41,14 @@
                                                 <tr>
                                                     <th>Kode lembur</th>
                                                     <th>Nama pegawai</th>
-                                                    <th>jumlah jam</th>
+                                                    <th>jumlah uang</th>
                                                     <th colspan="2" >Opsi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                             @foreach($lembur_pegawai as $lembur_pegawais)
+                                            @foreach($pegawai as $pegawais)
+                                            @if($lembur_pegawais->pegawai_id==$pegawais->id)
                                                 <tr>
                                                     <td>{{$lembur_pegawais->kategori_lembur->kode_lembur}}</td>
                                                     <td>{{$lembur_pegawais->pegawai->user->name}}</td>
@@ -62,8 +64,8 @@
              </td>
                                              </tr>
                                                
-                                                   
-                                       
+                                                @endif  
+                                       @endforeach
                                                 @endforeach
 
                                             </tbody>

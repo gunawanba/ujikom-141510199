@@ -43,7 +43,7 @@
            <select name="jabatan_id" class="form-control">
             <option value="">Silahkan Pilih</option>
             @foreach ($jabatan as $jabatans)
-            <option value="{{$jabatans->id}}">{{$jabatans->nama_jabatan}}</option>
+            <option value="{{$jabatans->id}}">{{$jabatans->kode_jabatan}}&nbsp{{$jabatans->nama_jabatan}}</option>
             @endforeach
             </select>
                  {{ $errors->first('jabatan_id', ':message')  }}
@@ -57,7 +57,7 @@
               <select name="golongan_id" class="form-control">
                 <option value="">Silahkan Pilih</option>
             @foreach ($golongan as $golongans)
-            <option value="{{$golongans->id}}">{{$golongans->nama_golongan}}</option>
+            <option value="{{$golongans->id}}">{{$golongans->kode_golongan}}&nbsp{{$golongans->nama_golongan}}</option>
             @endforeach
             </select>
                  {{ $errors->first('golongan_id', ':message')  }}
