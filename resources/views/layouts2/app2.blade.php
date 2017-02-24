@@ -148,7 +148,7 @@
                     </li>
                     </a>
                     @elseif(Auth::user()->permession=='Hrd')
-                     <label> <h3>Lihat Penggajian</h3></label>
+                   {{--   <label> <h3>Lihat Penggajian</h3></label>
                     @foreach($penggajian as $penggajians)
                     @foreach($pegawai as $pegawais)
                     @if(Auth::user()->id ==$pegawais->user_id)
@@ -164,7 +164,7 @@
                     @endif
                   @endif
                     @endforeach
-                    @endforeach
+                    @endforeach --}}
                      <a href="{{url('pegawai')}}">
                     <li class="ripple"><span class="fa fa-table"></span> Pegawai  </span> 
                     
@@ -188,7 +188,7 @@
                     </li>
                     </a>
 
-                      <label> <h3>Lihat Penggajian</h3></label>
+                     {{--  <label> <h3>Lihat Penggajian</h3></label>
                     @foreach($penggajian as $penggajians)
                     @foreach($pegawai as $pegawais)
                     @if(Auth::user()->id ==$pegawais->user_id)
@@ -204,7 +204,7 @@
                     @endif
                   @endif
                     @endforeach
-                    @endforeach
+                    @endforeach --}}
                @else
                <label> <h3>Lihat Penggajian</h3></label>
                     @foreach($penggajian as $penggajians)

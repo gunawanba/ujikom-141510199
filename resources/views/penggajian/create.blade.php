@@ -31,7 +31,7 @@
                                 <label for="Jabatan">Nama Pegawai</label>
                                     <select class="col-md-6 form-control" name="tunjangan_pegawai_id">
                                         @foreach($tunjangan as $datatunjangan)
-                                            <option  value="{{$datatunjangan->id}}" >{{$datatunjangan->pegawai->User->name}}</option>
+                                            <option  value="{{$datatunjangan->id}}" >{{$datatunjangan->tunjangan->kode_tunjangan}}&nbsp{{$datatunjangan->pegawai->User->name}}</option>
                                         @endforeach
                                     </select>
                                         @if(isset($error))

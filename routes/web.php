@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('/ss', function () {
-    return view('layouts2.app2');
+Route::get('/', function () {
+    return view('welcome');
 });
 
 Auth::routes();
@@ -35,15 +35,15 @@ Route::get('/akses', function () {
 
 
 
-Route::group(['middleware' => ['api','cors'],'prefix' => 'api'], function () {
+Route::group(['middleware' => ['api'],'prefix' => 'api'], function () {
 
-    Route::post('register', 'APIController@register');
+    Route::post('register', 'ApiController@register');
 
-    Route::post('login', 'APIController@login');
+    Route::post('login', 'ApiController@login');
 
     Route::group(['middleware' => 'jwt-auth'], function () {
 
-    	Route::post('get_user_details', 'APIController@get_user_details');
+    	Route::post('get_user_details', 'ApiController@get_user_details');
 
     });
 

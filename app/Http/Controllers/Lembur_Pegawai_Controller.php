@@ -76,13 +76,13 @@ public function error()
          $rules = array(
             
             'pegawai_id'=>'required',
-            'jumlah_jam'=>'required'
+            'jumlah_jam'=>'required|numeric'
             );
 
         $message= array(
             
             'pegawai_id.required'=>'Maaf Data Masih Kosong',
-          
+            'jumlah_jam.numeric'=>'input angka',
             'jumlah_jam.required'=>'Maaf Data Masih Kosong'
             
             );
@@ -153,13 +153,13 @@ public function error()
          if ($lembur_pegawai['kode_lembur_id'] !=Request('kode_lembur_id')) {
                  $rules = array(
             
-            'jumlah_jam'=>'required'
+            'jumlah_jam'=>'required|numeric'
             );
            }
            else{
             $rules = array(
            
-            'jumlah_jam'=>'required'
+            'jumlah_jam'=>'required|numeric'
             );
            }
 
@@ -167,7 +167,7 @@ public function error()
 
         $message= array(
             
-            
+             'jumlah_jam.numeric'=>'input angka',
             'jumlah_jam.required'=>'Maaf Data Masih Kosong'
             
             );

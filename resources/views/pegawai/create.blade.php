@@ -28,8 +28,10 @@
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" autofocus>
-
-                                {{ $errors->first('name', ':message')  }}
+<span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                               
                             </div>
                         </div>
 
@@ -51,7 +53,7 @@
                @endif
             </select>
 
-    {{ $errors->first('permession', ':message')  }}
+ 
         </td>
 
                             </div>
@@ -62,7 +64,9 @@
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" >
 
-                                   {{ $errors->first('email', ':message')  }}
+                                 <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
   
                             </div>
                         </div>
@@ -72,7 +76,9 @@
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password">
- {{ $errors->first('password', ':message')  }}
+  <span class="help-block">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
                             </div>
                         </div>
 
@@ -104,7 +110,7 @@
 
                             <div class="col-md-6">
                                 <input  type="text" class="form-control" name="nip" value="{{ old('nip') }}"  autofocus>
-                                 {{ $errors->first('nip', ':message')  }}
+                               
                             </div>
                         </div>
 
@@ -113,12 +119,12 @@
 
                             <div class="col-md-6">
                                  <select name="jabatan_id" class="form-control">
-                                 <option value="">pilih</option>
+                                 
             @foreach ($jabatan as $jabatans)
             <option value="{{$jabatans->id}}">{{$jabatans->nama_jabatan}}</option>
             @endforeach
             </select>
-{{ $errors->first('jabatan_id', ':message')  }}
+
  
                             </div>
                         </div>
@@ -127,12 +133,12 @@
 
                             <div class="col-md-6">
                                  <select name="golongan_id" class="form-control">
-                                 <option value="">pilih</option>
+                            
             @foreach ($golongan as $golongans)
             <option value="{{$golongans->id}}">{{$golongans->nama_golongan}}</option>
             @endforeach
             </select>
-                           {{ $errors->first('golongan_id', ':message')  }}     
+                          
                             </div>
                         </div>
 <div class="form-group{{ $errors->has('photo') ? ' has-error' : '' }}">
@@ -140,7 +146,11 @@
 
                             <div class="col-md-6">
                                 <input  type="file"  name="photo" value="{{ old('photo') }}">
-{{ $errors->first('photo', ':message')  }}
+@if ($errors->has('photo'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('photo') }}</strong>
+                                        </span>
+                                    @endif
                                 
                             </div>
                         </div>
