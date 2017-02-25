@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="C:\Users\Home\Downloads\Compressed\ujikom-2017\ujikom-2017\Android\app\src\main\shaders"/></dataSet><dataSet config="debug"><source path="C:\Users\Home\Downloads\Compressed\ujikom-2017\ujikom-2017\Android\app\src\debug\shaders"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="C:\laragon\www\kantoran\Android\app\src\main\shaders"/></dataSet><dataSet config="debug"><source path="C:\laragon\www\kantoran\Android\app\src\debug\shaders"/></dataSet></merger>

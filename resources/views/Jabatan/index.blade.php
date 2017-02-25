@@ -22,7 +22,7 @@
                 
                         <div class="panel-body">
                             <div class="row">
-                            <form action="{{url('jabatan')}}/?kode_jabatan=kode_jabatan"> <input type="text" name="kode_jabatan"> <button type="submit" class="btn btn-primary">
+                            <form action="{{url('jabatan')}}/?kode_jabatan=kode_jabatan"> <input type="text" name="kode_jabatan" placeholder="isi dengan Kode Jabatan"> <button type="submit" class="btn btn-primary">
                                     cari
                                 </button>
 

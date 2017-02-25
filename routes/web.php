@@ -35,16 +35,16 @@ Route::get('/akses', function () {
 
 
 
-Route::group(['middleware' => ['api'],'prefix' => 'api'], function () {
+// Route::group(['middleware' => ['api'],'prefix' => 'api'], function () {
 
-    Route::post('register', 'ApiController@register');
+//     Route::post('register', 'ApiController@register');
 
-    Route::post('login', 'ApiController@login');
+//     Route::post('login', 'ApiController@login');
 
-    Route::group(['middleware' => 'jwt-auth'], function () {
+//     Route::group(['middleware' => 'jwt-auth'], function () {
 
-    	Route::post('get_user_details', 'ApiController@get_user_details');
+//     	Route::post('get_user_details', 'ApiController@get_user_details');
 
-    });
+//     });
 
-});
+// });

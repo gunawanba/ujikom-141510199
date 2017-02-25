@@ -24,7 +24,7 @@
                 
                 <!--end quick info section -->
             </div>
- <form action="{{url('golongan')}}/?kode_golongan=kode_golongan"> <input type="text" name="kode_golongan"> <button type="submit" class="btn btn-primary">
+ <form action="{{url('golongan')}}/?kode_golongan=kode_golongan"> <input type="text" name="kode_golongan" placeholder="isi dengan Kode Golongan"> <button type="submit" class="btn btn-primary">
                                     cari
                                 </button>
 

@@ -5,32 +5,32 @@
     density="hdpi"
     format="8"
     plugin-version="2.2.3"
-    timestamp="48321693824280"
-    token="-4390117863193695861"
+    timestamp="2595537713187"
+    token="-2772722409997454230"
     verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="1794" />
+        duration="856" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="71" />
+        duration="101" />
     <task
         name="verifier"
         duration="5" />
 
     <artifact
-        location="C:\Users\Home\Downloads\Compressed\ujikom-2017\ujikom-2017\Android\app\build\outputs\apk\app-debug.apk"
+        location="C:\laragon\www\kantoran\Android\app\build\outputs\apk\app-debug.apk"
         type="MAIN" />
 
     <build
-        timestamp="48321693824280"
-        verifier="FULL_BUILD_REQUESTED" >
+        timestamp="70358321771104"
+        verifier="STATIC_INITIALIZER_CHANGE" >
         <artifact
-            location="C:\Users\Home\Downloads\Compressed\ujikom-2017\ujikom-2017\Android\app\build\outputs\apk\app-debug.apk"
+            location="C:\laragon\www\kantoran\Android\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
     </build>
 

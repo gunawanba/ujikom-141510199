@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 
 Route::group(['middleware' => ['api']], function () {
     Route::post('register', 'ApiController@register');
-    Route::post('/', 'ApiController@login');
+    Route::post('login', 'ApiController@login');
     Route::group(['middleware' => 'jwt-auth'], function () {
     	Route::post('get_user_details', 'ApiController@get_user_details');
     });

@@ -24,7 +24,7 @@
 
                         <div class="panel-body">
                             <div class="row">
-                            <form action="{{url('tunjangan_pegawai')}}/?nip=bip"> <input type="text" name="nip"> <button type="submit" class="btn btn-primary">
+                            <form action="{{url('tunjangan_pegawai')}}/?nip=bip"> <input type="text" name="nip" placeholder="isi dengan nip"> <button type="submit" class="btn btn-primary">
                                     cari
                                 </button>
 

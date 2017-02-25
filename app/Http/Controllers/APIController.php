@@ -68,7 +68,7 @@ class ApiController extends Controller
                     ->firstorFail();
 
         // Get Photo
-        $img = asset("profile/".$detail->photo);
+        $img = asset("image/".$detail->photo);
 
         // JSON Output
         $response["error"] = FALSE;

@@ -48,6 +48,7 @@
            <option value="Hrd">Hrd</option>
             <option value="Keuangan">Keuangan</option>
               <option value="Admin">Admin</option>
+              <option value="Pegawai">Pegawai</option>
               @else
               <option value="Pegawai">Pegawai</option>
                @endif

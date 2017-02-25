@@ -22,7 +22,7 @@
 
                         <div class="panel-body">
                             <div class="row">
-                             <form action="<?php echo e(url('pegawai')); ?>/?nip=nip"> <input type="text" name="nip"> <button type="submit" class="btn btn-primary">
+                             <form action="<?php echo e(url('pegawai')); ?>/?nip=nip"> <input type="text" name="nip" placeholder="isi dengan Nip"> <button type="submit" class="btn btn-primary" >
                                     cari
                                 </button>
 

@@ -26,7 +26,7 @@
                             <div class="row">
                      
                             
-                           <form action="{{url('lembur_pegawai')}}/?kode_lembur=kode_lembur"> <input type="text" name="kode_lembur"> <button type="submit" class="btn btn-primary">
+                           <form action="{{url('lembur_pegawai')}}/?kode_lembur=kode_lembur"> <input type="text" name="kode_lembur" placeholder="isi dengan kode Lembur"> <button type="submit" class="btn btn-primary">
                                     cari
                                 </button>
                                 </form>
